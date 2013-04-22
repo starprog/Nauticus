@@ -58,7 +58,6 @@
      <Compile Include="Assets\Editor\Image Effects\TiltShiftEditor.js" />
      <Compile Include="Assets\Editor\Image Effects\TonemappingEditor.js" />
      <Compile Include="Assets\Editor\Image Effects\VignettingEditor.js" />
-     <None Include="Assets\Git UniTEAM\Editor\readme.txt" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Glass Refraction (Pro Only)\Sources\Shaders\Glass-Stained-BumpDistort.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
@@ -157,12 +156,6 @@
  </Reference>
  <Reference Include="Assembly-UnityScript">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
- </Reference>
- <Reference Include="git-uniteam">
- <HintPath>Assets\Git UniTEAM\Editor\git-uniteam.dll</HintPath>
- </Reference>
- <Reference Include="LibGit2Sharp">
- <HintPath>Assets\Git UniTEAM\Editor\LibGit2Sharp.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
