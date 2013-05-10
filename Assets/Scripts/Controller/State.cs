@@ -16,6 +16,7 @@ public class State : MonoBehaviour
 	private Quaternion _CurrentRotation;
 	
 	private Waypoint _CurrentWaypoint;
+	private Waypoint _TargetWaypoint;
 	private GameObject _CurrentObjectOfInterest;
 	
 	private string _CurrentState;
@@ -224,6 +225,17 @@ public class State : MonoBehaviour
 	{
 		return _CurrentWaypoint;	
 	}
+	
+	public void TargetWaypoint(Waypoint TargetWaypoint)
+	{
+		_TargetWaypoint = TargetWaypoint;
+	}
+	
+	public Waypoint TargetWaypoint()
+	{
+		return _TargetWaypoint;	
+	}
+
 
 	public void CurrentObjectOfInterest(GameObject CurrentObjectOfInterest)
 	{

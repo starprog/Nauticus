@@ -13,7 +13,7 @@ public class Waypoint : MonoBehaviour
 	public bool HasButton=true;//Set this to true if a button is to be displayed on the menu
 	public AudioClip Dialog;//set this = to the dialog to play when the player enters the waypoint trigger zone
 	public string LocationInformation;
-	
+	private bool _WithinZone = false;
 	#endregion
 	
 	#region "Methods"
@@ -124,16 +124,16 @@ public class Waypoint : MonoBehaviour
 		
 		Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = false;
 		
-		//Sets the current waypoint to this waypoint
-		Controller.GetComponent<State>().CurrentWaypoint(this);
-		
 		//Plays the dialog audio clip associated with this waypoint zone
 		PlayDialog();
 	}
 	
 	void OnTriggerStay(Collider other)
 	{
+		//Sets the current waypoint to this waypoint
+		Controller.GetComponent<State>().CurrentWaypoint(this);
 		
+		_WithinZone = true;
 	}
 	
 	//Handles everything that happens when the player leaves the waypoint zone
@@ -141,8 +141,11 @@ public class Waypoint : MonoBehaviour
 	{
 		if(Controller.GetComponent<Follow>().HasAutomaticPathfinding == true)
 		{
-			Controller.GetComponent<Objects>().Player.GetComponent<MouseLook>().enabled = false;
+			_WithinZone = false;
 		}
+		
+		//Sets the current waypoint to null
+		Controller.GetComponent<State>().CurrentWaypoint(null);
 		
 		//Player is Active
 		Controller.GetComponent<State>().Active();
@@ -161,6 +164,18 @@ public class Waypoint : MonoBehaviour
 	}
 	#endregion
 	
+	#endregion
+	
+	#region "Get and Set"
+	public bool WithinZone()
+	{
+		return _WithinZone;	
+	}
+	
+	public void WithinZone(bool WithinZone)
+	{
+		_WithinZone = WithinZone;	
+	}
 	#endregion
 	
 	#region "GUI"

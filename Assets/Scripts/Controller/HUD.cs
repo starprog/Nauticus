@@ -46,13 +46,16 @@ public class HUD : MonoBehaviour
 	
 	private void SkipToDestination_Handler()
 	{
-		if(Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN == true)
+		if(Controller.GetComponent<State>().TargetWaypoint() != null)
 		{
-			Controller.GetComponent<SkipToDestination_BTN>().enabled = true;	
-		}
-		else
-		{
-			Controller.GetComponent<SkipToDestination_BTN>().enabled = false;	
+			if(Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN == true && Controller.GetComponent<State>().TargetWaypoint().WithinZone() == false)
+			{
+				Controller.GetComponent<SkipToDestination_BTN>().enabled = true;	
+			}
+			else
+			{
+				Controller.GetComponent<SkipToDestination_BTN>().enabled = false;	
+			}
 		}
 	}
 	

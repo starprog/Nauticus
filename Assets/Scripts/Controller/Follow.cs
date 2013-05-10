@@ -51,6 +51,8 @@ public class Follow : MonoBehaviour
 		{
 			//Sets the destination
 			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().destination = _WaypointCollection[WaypointDestinationIndex].transform.position;
+			Controller.GetComponent<State>().TargetWaypoint(_WaypointCollection[WaypointDestinationIndex]);
+			Debug.Log("Target = "+Controller.GetComponent<State>().TargetWaypoint().Name);
 		}
 	}
 	#endregion
