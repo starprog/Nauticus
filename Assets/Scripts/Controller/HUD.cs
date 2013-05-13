@@ -18,7 +18,7 @@ public class HUD : MonoBehaviour
 	public GUIStyle GUI_Style_LeftArrow = new GUIStyle();
 	public GUIStyle GUI_Style_RightArrow = new GUIStyle();
 	public GUIStyle GUI_Style_ObjectOfInterestWindow = new GUIStyle();
-	
+	public int MenuShown;
 	private bool _ObjectOfInterestWindow_Toggle = false;
 	#endregion
 	
@@ -83,6 +83,65 @@ public class HUD : MonoBehaviour
 		}
 	}
 	
+	private void OnGUI()
+	{
+		//Level 2
+		//Creates a button based off of the dimensions of the HUD class
+		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+			Controller.GetComponent<HUD>().BTN_Y+0*Controller.GetComponent<HUD>().BTN_Height,
+			Controller.GetComponent<HUD>().BTN_Width,
+			Controller.GetComponent<HUD>().BTN_Height),
+			"Level 2",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			{
+				MenuShown = 0;	
+			}
+		
+		//Level 1
+		//Creates a button based off of the dimensions of the HUD class
+		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+			Controller.GetComponent<HUD>().BTN_Y+1*Controller.GetComponent<HUD>().BTN_Height,
+			Controller.GetComponent<HUD>().BTN_Width,
+			Controller.GetComponent<HUD>().BTN_Height),
+			"Level 1",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			{
+				MenuShown = 1;	
+			}
+		
+		//Deck 1
+		//Creates a button based off of the dimensions of the HUD class
+		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+			Controller.GetComponent<HUD>().BTN_Y+2*Controller.GetComponent<HUD>().BTN_Height,
+			Controller.GetComponent<HUD>().BTN_Width,
+			Controller.GetComponent<HUD>().BTN_Height),
+			"Deck 1",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			{
+				MenuShown = 2;	
+			}
+		
+		//Deck 2
+		//Creates a button based off of the dimensions of the HUD class
+		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+			Controller.GetComponent<HUD>().BTN_Y+3*Controller.GetComponent<HUD>().BTN_Height,
+			Controller.GetComponent<HUD>().BTN_Width,
+			Controller.GetComponent<HUD>().BTN_Height),
+			"Deck 2",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			{
+				MenuShown = 3;	
+			}
+		
+		//Deck 3
+		//Creates a button based off of the dimensions of the HUD class
+		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+			Controller.GetComponent<HUD>().BTN_Y+4*Controller.GetComponent<HUD>().BTN_Height,
+			Controller.GetComponent<HUD>().BTN_Width,
+			Controller.GetComponent<HUD>().BTN_Height),
+			"Deck 3",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			{
+				MenuShown = 4;	
+			}
+	}
+	
+	#region "ObjectOfInterest"
 	private void ObjectOfInterest_Handler()
 	{
 		ObjectOfInterestScanner();
@@ -133,6 +192,7 @@ public class HUD : MonoBehaviour
 			}
 		}
 	}
+	#endregion
 	
 	#region "Getter and Setter"
 	

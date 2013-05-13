@@ -9,6 +9,7 @@ public class Waypoint : MonoBehaviour
 	protected GameObject Controller;
 	public string Name;//Set this = to the name of the waypoint
 	public int Index;//Set this = to the order position of this waypoint
+	public int DeckIndex;
 	public int MenuIndex;//Set this = to the position on the menu where the button should be placed. Note: Do not overlap otherwise, one will be hidden
 	public bool HasButton=true;//Set this to true if a button is to be displayed on the menu
 	public AudioClip Dialog;//set this = to the dialog to play when the player enters the waypoint trigger zone
@@ -186,19 +187,23 @@ public class Waypoint : MonoBehaviour
 			//Checks to see if the waypoint should have a button created on the menu
 			if (HasButton==true)
 			{
-				//Creates a button based off of the dimensions of the HUD class
-				if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-					Controller.GetComponent<HUD>().BTN_Y+MenuIndex*Controller.GetComponent<HUD>().BTN_Height,
-					Controller.GetComponent<HUD>().BTN_Width,
-					Controller.GetComponent<HUD>().BTN_Height),
-					Name,Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
-					{
-					
-					Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = true;
-					//On Click will set the destination of the player to this waypoint
-					Debug.Log("Waypoint: Setting Destination to Waypoint: " + Name);
-					Controller.GetComponent<Follow>().SetNewDestination(Index);
-					}
+				//Handles the deck level menu
+				if(Controller.GetComponent<HUD>().MenuShown == DeckIndex)
+				{
+					//Creates a button based off of the dimensions of the HUD class
+					if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X+Controller.GetComponent<HUD>().BTN_Width,
+						Controller.GetComponent<HUD>().BTN_Y+DeckIndex*Controller.GetComponent<HUD>().BTN_Height+MenuIndex*Controller.GetComponent<HUD>().BTN_Height,
+						Controller.GetComponent<HUD>().BTN_Width,
+						Controller.GetComponent<HUD>().BTN_Height),
+						Name,Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+						{
+						
+						Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = true;
+						//On Click will set the destination of the player to this waypoint
+						Debug.Log("Waypoint: Setting Destination to Waypoint: " + Name);
+						Controller.GetComponent<Follow>().SetNewDestination(Index);
+						}
+				}
 			}
 		}
 	}
