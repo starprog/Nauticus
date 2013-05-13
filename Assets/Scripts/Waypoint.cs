@@ -119,7 +119,7 @@ public class Waypoint : MonoBehaviour
 		if(Controller.GetComponent<Follow>().HasAutomaticPathfinding == true)
 		{
 			//Allows the player to look around when the player reaches a waypoint
-			Controller.GetComponent<Objects>().Player.GetComponent<MouseLook>().enabled = true;
+			//Controller.GetComponent<Objects>().Player.GetComponent<MouseLook>().enabled = true;
 		}
 		
 		Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = false;
@@ -191,7 +191,7 @@ public class Waypoint : MonoBehaviour
 					Controller.GetComponent<HUD>().BTN_Y+MenuIndex*Controller.GetComponent<HUD>().BTN_Height,
 					Controller.GetComponent<HUD>().BTN_Width,
 					Controller.GetComponent<HUD>().BTN_Height),
-					Name))
+					Name,Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 					{
 					
 					Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = true;

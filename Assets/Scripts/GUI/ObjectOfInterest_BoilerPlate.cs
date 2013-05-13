@@ -20,6 +20,9 @@ public class ObjectOfInterest_BoilerPlate : Window
 	{
 		UpdateStats();
 		
-		GUI.Box(WindowBox,Text,Controller.GetComponent<HUD>().GUI_Style);
+		if(GUI.Button(WindowBox,Text,Controller.GetComponent<HUD>().GUI_Style_ObjectOfInterestBoilerPlate))
+		{
+			Controller.GetComponent<HUD>().ObjectOfInterestWindow_Toggle(true);
+		}
 	}
 }

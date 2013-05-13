@@ -75,7 +75,7 @@ public class State : MonoBehaviour
 	
 	private bool CameraRotationCheck()
 	{
-		_CurrentRotation = Controller.GetComponent<Objects>().MainCamera.transform.rotation;
+		_CurrentRotation = Controller.GetComponent<Objects>().Player.GetComponent<Camera>().transform.rotation;
 		
 		//Checks the OldRotation against the current Rotation
 		if(_OldRotation == _CurrentRotation)
@@ -90,7 +90,7 @@ public class State : MonoBehaviour
 		}
 	}
 	
-	private bool MovementCheck()
+	public bool MovementCheck()
 	{
 		_CurrentPos = Controller.GetComponent<Objects>().Player.transform.position;
 		

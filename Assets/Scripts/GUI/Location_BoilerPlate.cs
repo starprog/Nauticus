@@ -10,7 +10,9 @@ public class Location_BoilerPlate : Window
 		if(Controller.GetComponent<State>().CurrentWaypoint() != null)
 		{
 			//If Current waypoint exists, the Text will become the Name of the Waypoint.
-			Text = Controller.GetComponent<State>().CurrentWaypoint().Name + ":\n" + Controller.GetComponent<State>().CurrentWaypoint().LocationInformation;
+			Text = Controller.GetComponent<State>().CurrentWaypoint().Name;
+				//+":\n"
+				//+ Controller.GetComponent<State>().CurrentWaypoint().LocationInformation;
 		}
 		else
 		{
