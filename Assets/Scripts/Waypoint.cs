@@ -12,6 +12,9 @@ public class Waypoint : MonoBehaviour
 	public int DeckIndex;
 	public int MenuIndex;//Set this = to the position on the menu where the button should be placed. Note: Do not overlap otherwise, one will be hidden
 	public bool HasButton=true;//Set this to true if a button is to be displayed on the menu
+	public bool PrimaryWaypoint = true;
+	public bool Loop = true;
+	public Waypoint LoopTarget = null;
 	public AudioClip Dialog;//set this = to the dialog to play when the player enters the waypoint trigger zone
 	public string LocationInformation;
 	private bool _WithinZone = false;
@@ -135,6 +138,11 @@ public class Waypoint : MonoBehaviour
 		Controller.GetComponent<State>().CurrentWaypoint(this);
 		
 		_WithinZone = true;
+		
+		if(Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint())
+		{
+			CheckLoop();	
+		}
 	}
 	
 	//Handles everything that happens when the player leaves the waypoint zone
@@ -150,6 +158,15 @@ public class Waypoint : MonoBehaviour
 		
 		//Player is Active
 		Controller.GetComponent<State>().Active();
+	}
+	
+	void CheckLoop()
+	{
+		//Makes sure the loop target exists, loop is true
+		if(LoopTarget != null && Loop  == true)
+		{
+			Controller.GetComponent<Follow>().SetNewDestination(LoopTarget.Index);
+		}
 	}
 	
 	#region "Dialog"
@@ -197,7 +214,8 @@ public class Waypoint : MonoBehaviour
 						Controller.GetComponent<HUD>().BTN_Height),
 						Name,Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 						{
-						
+						Controller.GetComponent<HUD>().MenuShown = 0;
+						Loop = true;
 						Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = true;
 						//On Click will set the destination of the player to this waypoint
 						Debug.Log("Waypoint: Setting Destination to Waypoint: " + Name);

@@ -59,12 +59,13 @@ public class HUD : MonoBehaviour
 		{
 			if(Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN == true && Controller.GetComponent<State>().TargetWaypoint().WithinZone() == false)
 			{
-				Controller.GetComponent<SkipToDestination_BTN>().enabled = true;	
+					Controller.GetComponent<SkipToDestination_BTN>().enabled = true;	
 			}
 			else
 			{
 				Controller.GetComponent<SkipToDestination_BTN>().enabled = false;	
 			}
+				
 		}
 	}
 	
@@ -164,11 +165,13 @@ public class HUD : MonoBehaviour
 		{
 			Controller.GetComponent<ObjectOfInterest_Window>().enabled = true;
 			Controller.GetComponent<Location_BoilerPlate>().enabled = false;
+			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Stop();
 		}
 		else
 		{
 			Controller.GetComponent<ObjectOfInterest_Window>().enabled = false;	
 			Controller.GetComponent<Location_BoilerPlate>().enabled = true;
+			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Resume();
 		}
 	}
 	

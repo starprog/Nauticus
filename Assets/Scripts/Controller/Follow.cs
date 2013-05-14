@@ -52,6 +52,16 @@ public class Follow : MonoBehaviour
 			//Sets the destination
 			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().destination = _WaypointCollection[WaypointDestinationIndex].transform.position;
 			Controller.GetComponent<State>().TargetWaypoint(_WaypointCollection[WaypointDestinationIndex]);
+			
+			if(Controller.GetComponent<State>().TargetWaypoint().PrimaryWaypoint == false)
+			{
+				Controller.GetComponent<State>().IsLooping = true;
+			}
+			else
+			{
+				Controller.GetComponent<State>().IsLooping = false;
+			}
+			
 			Debug.Log("Target = "+Controller.GetComponent<State>().TargetWaypoint().Name);
 		}
 	}

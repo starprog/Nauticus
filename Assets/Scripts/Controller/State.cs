@@ -9,11 +9,16 @@ public class State : MonoBehaviour
 	public int TimeOut = 60;//The amount of time of inactivity before the game reverts back to the home screen
 	public int TimeOutWarning = 15;//At this time, the player will get notified that they must act or be reset
 	
+	public bool IsLooping = false;
+	
 	private int MaxTimeOut;
 	private Vector3 _OldPos;
 	private Vector3 _CurrentPos;
+	private Vector2 _OldCursorPos;
+	private Vector2 _CurrentCursorPos;
 	private Quaternion _OldRotation;
 	private Quaternion _CurrentRotation;
+	
 	
 	private Waypoint _CurrentWaypoint;
 	private Waypoint _TargetWaypoint;
@@ -63,13 +68,30 @@ public class State : MonoBehaviour
 		//CameraRotationCheck() = if the player's camera has rotated
 		
 		//Tests all checks to see if the player is active
-		if(MovementCheck() ==true || DialogCheck() == true || CameraRotationCheck() == true)
+		if(MovementCheck() == true || DialogCheck() == true || CameraRotationCheck() == true || CursorMovementCheck() == true)
 		{
 			Active();
 		}
 		else
 		{
 			Inactive();	
+		}
+	}
+	
+	private bool CursorMovementCheck()
+	{
+		_CurrentCursorPos = Input.mousePosition;
+		
+		//Checks the OldCursorPos against the current CursorPos
+		if(_OldCursorPos == _CurrentCursorPos)
+		{
+			_OldCursorPos = _CurrentCursorPos;
+			return false;	
+		}
+		else
+		{
+			_OldCursorPos = _CurrentCursorPos;
+			return true;	
 		}
 	}
 	

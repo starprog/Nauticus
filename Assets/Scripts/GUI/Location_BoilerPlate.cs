@@ -14,10 +14,6 @@ public class Location_BoilerPlate : Window
 				//+":\n"
 				//+ Controller.GetComponent<State>().CurrentWaypoint().LocationInformation;
 		}
-		else
-		{
-			Text = "";
-		}
 	}
 	
 	void OnGUI()
