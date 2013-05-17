@@ -12,12 +12,24 @@ public class Waypoint : MonoBehaviour
 	public int DeckIndex;
 	public int MenuIndex;//Set this = to the position on the menu where the button should be placed. Note: Do not overlap otherwise, one will be hidden
 	public bool HasButton=true;//Set this to true if a button is to be displayed on the menu
-	public bool PrimaryWaypoint = true;
+	public bool PrimaryWaypoint = false;
 	public bool Loop = true;
+	public bool EndPoint = false;
 	public Waypoint LoopTarget = null;
 	public AudioClip Dialog;//set this = to the dialog to play when the player enters the waypoint trigger zone
 	public string LocationInformation;
 	private bool _WithinZone = false;
+	
+	private List<Waypoint> _Paths = new List<Waypoint>();
+	public Waypoint Path0;
+	public Waypoint Path1;
+	public Waypoint Path2;
+	public Waypoint Path3;
+	public Waypoint Path4;
+	public Waypoint Path5;
+	public Waypoint Path6;
+	public Waypoint Path7;
+	public Waypoint Path8;
 	#endregion
 	
 	#region "Methods"
@@ -29,15 +41,31 @@ public class Waypoint : MonoBehaviour
 		
 		//Pushes the Waypoint
 		PushWaypoint();
-		
+				
 		//Reorders the Waypoint Collection
 		Reorder();
+		
+		//Pushes the Paths
+		PushPaths();
 		
 		//Turns the waypoint invisible
 		GetComponent<MeshRenderer>().enabled = false;
 		
 		//Sets the dialog
 		audio.clip = Dialog;
+	}
+	
+	void PushPaths()
+	{
+		_Paths.Add(Path0);
+		_Paths.Add(Path1);	
+		_Paths.Add(Path2);
+		_Paths.Add(Path3);
+		_Paths.Add(Path4);
+		_Paths.Add(Path5);
+		_Paths.Add(Path6);
+		_Paths.Add(Path7);
+		_Paths.Add(Path8);
 	}
 	
 	void PushWaypoint()
@@ -163,7 +191,12 @@ public class Waypoint : MonoBehaviour
 	void CheckLoop()
 	{
 		//Makes sure the loop target exists, loop is true
-		if(LoopTarget != null && Loop  == true)
+
+		if(LoopTarget == null && PrimaryWaypoint == false && Loop == false && EndPoint == false)
+		{
+			Controller.GetComponent<Follow>().SetNewDestination(_Paths[Controller.GetComponent<State>().PrimaryTargetWaypoint().Index].Index);
+		}
+		else if(LoopTarget != null)
 		{
 			Controller.GetComponent<Follow>().SetNewDestination(LoopTarget.Index);
 		}
@@ -214,18 +247,25 @@ public class Waypoint : MonoBehaviour
 						Controller.GetComponent<HUD>().BTN_Height),
 						Name,Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 						{
-						Controller.GetComponent<HUD>().MenuShown = 0;
-						Loop = true;
-						Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = true;
-						//On Click will set the destination of the player to this waypoint
-						Debug.Log("Waypoint: Setting Destination to Waypoint: " + Name);
-						Controller.GetComponent<Follow>().SetNewDestination(Index);
+							Controller.GetComponent<HUD>().MenuShown = 0;
+							Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = true;
+							//Loop = true;
+							//On Click will set the destination of the player to this waypoint
+							Debug.Log("Waypoint: Setting Destination to Waypoint: " + Name);
+							Controller.GetComponent<State>().PrimaryTargetWaypoint(this);	
+							Controller.GetComponent<Follow>().PathWaypointNavigate();
+							
 						}
 				}
 			}
 		}
 	}
 	#endregion
+	
+	public List<Waypoint> Paths()
+	{
+		return _Paths;	
+	}
 	
 	#endregion
 }

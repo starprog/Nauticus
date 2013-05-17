@@ -13,10 +13,10 @@ public class SkipToDestination_BTN : Window
 		
 		if(Controller.GetComponent<State>().IsLooping == false)
 		{
-			if (GUI.Button (WindowBox, Text + " to the " + Controller.GetComponent<State>().TargetWaypoint().Name,Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			if (GUI.Button (WindowBox, Text + " to the " + Controller.GetComponent<State>().PrimaryTargetWaypoint().Name,Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 			{
-				Debug.Log("Target = "+Controller.GetComponent<State>().TargetWaypoint().Name);
-				Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Warp(Controller.GetComponent<State>().TargetWaypoint().transform.position);
+				Debug.Log("Target = "+Controller.GetComponent<State>().PrimaryTargetWaypoint().Name);
+				Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Warp(Controller.GetComponent<State>().PrimaryTargetWaypoint().transform.position);
 			}
 		}
 	}

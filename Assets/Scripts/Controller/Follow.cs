@@ -8,7 +8,7 @@ public class Follow : MonoBehaviour
 	protected GameObject Controller;
 	public bool HasAutomaticPathfinding = true;
 	
-	private List<Waypoint> _WaypointCollection = new List<Waypoint>();	
+	public List<Waypoint> _WaypointCollection = new List<Waypoint>();	
 	#endregion
 	
 	#region "Methods"
@@ -25,6 +25,7 @@ public class Follow : MonoBehaviour
 			Controller.GetComponent<Objects>().Player.GetComponent<CharacterMotor>().enabled = true;
 			Controller.GetComponent<Objects>().Player.GetComponent<FPSInputController>().enabled = true;
 			Controller.GetComponent<Objects>().Player.GetComponent<MouseLook>().enabled = true;
+			Controller.GetComponent<State>().CurrentWaypoint(_WaypointCollection[0]);			
 		}
 	}
 	#endregion
@@ -48,10 +49,20 @@ public class Follow : MonoBehaviour
 	public void SetNewDestination(int WaypointDestinationIndex)
 	{
 		if(HasAutomaticPathfinding == true)
-		{
-			//Sets the destination
-			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().destination = _WaypointCollection[WaypointDestinationIndex].transform.position;
-			Controller.GetComponent<State>().TargetWaypoint(_WaypointCollection[WaypointDestinationIndex]);
+		{			
+			if(Controller.GetComponent<State>().CurrentWaypoint().LoopTarget != null && Controller.GetComponent<State>().CurrentWaypoint().PrimaryWaypoint == true)
+			{
+				PrimaryWaypointNavigate();
+			}	
+			else if(Controller.GetComponent<State>().CurrentWaypoint().LoopTarget != null && Controller.GetComponent<State>().CurrentWaypoint().PrimaryWaypoint == false)
+			{
+				LoopWaypointNavigate();
+			}
+			else if(Controller.GetComponent<State>().CurrentWaypoint().LoopTarget == null && Controller.GetComponent<State>().CurrentWaypoint().PrimaryWaypoint == false)
+			{
+				PathWaypointNavigate();
+			}
+
 			
 			if(Controller.GetComponent<State>().TargetWaypoint().PrimaryWaypoint == false)
 			{
@@ -65,5 +76,24 @@ public class Follow : MonoBehaviour
 			Debug.Log("Target = "+Controller.GetComponent<State>().TargetWaypoint().Name);
 		}
 	}
+	
+	private void PrimaryWaypointNavigate()
+	{
+		Controller.GetComponent<State>().TargetWaypoint(Controller.GetComponent<State>().CurrentWaypoint().LoopTarget);
+		Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().destination = Controller.GetComponent<State>().TargetWaypoint().transform.position;
+	}
+	
+	private void LoopWaypointNavigate()
+	{
+		Controller.GetComponent<State>().TargetWaypoint(Controller.GetComponent<State>().CurrentWaypoint().LoopTarget);
+		Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().destination = Controller.GetComponent<State>().TargetWaypoint().transform.position;
+	}
+	
+	public void PathWaypointNavigate()
+	{
+		Controller.GetComponent<State>().TargetWaypoint(Controller.GetComponent<State>().CurrentWaypoint().Paths()[Controller.GetComponent<State>().PrimaryTargetWaypoint().Index]);
+		Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().destination = Controller.GetComponent<State>().TargetWaypoint().transform.position;
+	}
+	
 	#endregion
 }

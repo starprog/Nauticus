@@ -22,13 +22,16 @@ public class State : MonoBehaviour
 	
 	private Waypoint _CurrentWaypoint;
 	private Waypoint _TargetWaypoint;
+	private Waypoint _PrimaryTargetWaypoint;
 	private GameObject _CurrentObjectOfInterest;
 	
 	private string _CurrentState;
 	private const string ACTIVE = "ACTIVE";
 	private const string INACTIVE = "INACTIVE";
 	private const string TIMEDOUT = "TIMEDOUT";
-
+	
+	bool FirstRunSetup = true;
+	int FirstRunSetupCounter = 0;
 	#endregion
 	
 	#region "Methods"
@@ -53,7 +56,16 @@ public class State : MonoBehaviour
 			TimeOutStateCheck();
 		}
 		
-		ActivityCheck();		
+		ActivityCheck();
+		
+		FirstRunSetupCounter += 1;
+		if(FirstRunSetup == true && FirstRunSetupCounter%100 == 0)
+		{
+			Controller.GetComponent<State>().PrimaryTargetWaypoint(Controller.GetComponent<Follow>().WaypointCollection()[0]);
+			Controller.GetComponent<State>().TargetWaypoint(Controller.GetComponent<Follow>().WaypointCollection()[0]);
+			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().destination = Controller.GetComponent<Follow>().WaypointCollection()[0].transform.position;	
+			FirstRunSetup = false;
+		}
 	}
 	
 	#region "TimeOut"
@@ -257,7 +269,16 @@ public class State : MonoBehaviour
 	{
 		return _TargetWaypoint;	
 	}
-
+	
+	public void PrimaryTargetWaypoint(Waypoint PrimaryTargetWaypoint)
+	{
+		_PrimaryTargetWaypoint = PrimaryTargetWaypoint;
+	}
+	
+	public Waypoint PrimaryTargetWaypoint()
+	{
+		return _PrimaryTargetWaypoint;	
+	}
 
 	public void CurrentObjectOfInterest(GameObject CurrentObjectOfInterest)
 	{

@@ -55,9 +55,9 @@ public class HUD : MonoBehaviour
 	
 	private void SkipToDestination_Handler()
 	{
-		if(Controller.GetComponent<State>().TargetWaypoint() != null)
+		if(Controller.GetComponent<State>().PrimaryTargetWaypoint() != null)
 		{
-			if(Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN == true && Controller.GetComponent<State>().TargetWaypoint().WithinZone() == false)
+			if(Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN == true && Controller.GetComponent<State>().PrimaryTargetWaypoint().WithinZone() == false)
 			{
 					Controller.GetComponent<SkipToDestination_BTN>().enabled = true;	
 			}
