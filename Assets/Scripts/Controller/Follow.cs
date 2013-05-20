@@ -25,7 +25,7 @@ public class Follow : MonoBehaviour
 			Controller.GetComponent<Objects>().Player.GetComponent<CharacterMotor>().enabled = true;
 			Controller.GetComponent<Objects>().Player.GetComponent<FPSInputController>().enabled = true;
 			Controller.GetComponent<Objects>().Player.GetComponent<MouseLook>().enabled = true;
-			Controller.GetComponent<State>().CurrentWaypoint(_WaypointCollection[0]);			
+			//Controller.GetComponent<State>().CurrentWaypoint(_WaypointCollection[0]);			
 		}
 	}
 	#endregion
@@ -64,11 +64,11 @@ public class Follow : MonoBehaviour
 			}
 
 			
-			if(Controller.GetComponent<State>().TargetWaypoint().Loop == true && Controller.GetComponent<State>().TargetWaypoint().PrimaryWaypoint == false)
+			if(Controller.GetComponent<State>().TargetWaypoint().Loop == true || Controller.GetComponent<State>().TargetWaypoint().PrimaryWaypoint == true || Controller.GetComponent<State>().TargetWaypoint().EndPoint == true)
 			{
 				Controller.GetComponent<State>().IsLooping = true;
 			}
-			else
+			else if(Controller.GetComponent<State>().TargetWaypoint().Loop == false && Controller.GetComponent<State>().TargetWaypoint().PrimaryWaypoint == false && Controller.GetComponent<State>().TargetWaypoint().EndPoint == false)
 			{
 				Controller.GetComponent<State>().IsLooping = false;
 			}

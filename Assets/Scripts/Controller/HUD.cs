@@ -14,11 +14,18 @@ public class HUD : MonoBehaviour
 	public int BTN_Height = 50;//The height of the button
 	public GUIStyle GUI_Style = new GUIStyle();
 	public GUIStyle GUI_Style_Default_BTN = new GUIStyle();
+	public GUIStyle GUI_Style_Default_BTN_Highlight = new GUIStyle();
 	public GUIStyle GUI_Style_ObjectOfInterestBoilerPlate = new GUIStyle();
 	public GUIStyle GUI_Style_LeftArrow = new GUIStyle();
 	public GUIStyle GUI_Style_RightArrow = new GUIStyle();
 	public GUIStyle GUI_Style_ObjectOfInterestWindow = new GUIStyle();
 	public int MenuShown;
+	public int MenuItems_0 = 0;
+	public int MenuItems_1 = 0;
+	public int MenuItems_2 = 0;
+	public int MenuItems_3 = 0;
+	public int MenuItems_4 = 0;
+	
 	private bool _ObjectOfInterestWindow_Toggle = false;
 	#endregion
 	
@@ -36,9 +43,9 @@ public class HUD : MonoBehaviour
 		
 		SkipToDestination_Handler();
 		
-		Look_BTN_Handler();
-		
 		ObjectOfInterest_Handler();
+		
+		CurrentDeck_Handler();
 	}
 	
 	public void ShowTimeOutWarning()
@@ -71,35 +78,93 @@ public class HUD : MonoBehaviour
 				
 		}
 	}
-	
-	private void Look_BTN_Handler()
+		
+	private void CurrentDeck_Handler()
 	{
-		if(Controller.GetComponent<State>().CurrentWaypoint() !=null && Controller.GetComponent<State>().TargetWaypoint())
+		if(Controller.GetComponent<State>().CurrentWaypoint() != null)
 		{
-			if(Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
-				Controller.GetComponent<State>().MovementCheck() == false && Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
-			{
-				Controller.GetComponent<LookLeft_BTN>().enabled = true;
-				Controller.GetComponent<LookRight_BTN>().enabled = true;
-			}
-			else
-			{
-				Controller.GetComponent<LookLeft_BTN>().enabled = false;
-				Controller.GetComponent<LookRight_BTN>().enabled = false;	
-			}
+			//MenuShown = Controller.GetComponent<State>().CurrentWaypoint().DeckIndex;	
 		}
 	}
 	
 	private void OnGUI()
 	{
-		if(Controller.GetComponent<State>().MovementCheck() == false &&
+		int VerticalOffset_0 = 0;
+		int VerticalOffset_1 = 0;
+		int VerticalOffset_2 = 0;
+		int VerticalOffset_3 = 0;
+		int VerticalOffset_4 = 0;
+		int VerticalOffset_Highlight = 0;
+		
+		switch(Controller.GetComponent<HUD>().MenuShown)
+		{
+		case 0: if(Controller.GetComponent<HUD>().MenuItems_0>0)
+				{
+				//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
+				VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
+				VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
+				VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
+				VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
+				}
+			break;							
+		case 1: if(Controller.GetComponent<HUD>().MenuItems_1>0)
+				{
+				//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_1) * Controller.GetComponent<HUD>().BTN_Height;
+				//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_1) * Controller.GetComponent<HUD>().BTN_Height;
+				VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_1-1) * Controller.GetComponent<HUD>().BTN_Height;
+				VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_1-1) * Controller.GetComponent<HUD>().BTN_Height;
+				VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_1-1) * Controller.GetComponent<HUD>().BTN_Height;
+				}
+			break;
+		case 2: if(Controller.GetComponent<HUD>().MenuItems_2>0)
+				{
+				//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_2) * Controller.GetComponent<HUD>().BTN_Height;
+				//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_2) * Controller.GetComponent<HUD>().BTN_Height;
+				//VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_2) * Controller.GetComponent<HUD>().BTN_Height;
+				VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_2-1) * Controller.GetComponent<HUD>().BTN_Height;
+				VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_2-1) * Controller.GetComponent<HUD>().BTN_Height;
+				}
+			break;
+		case 3: if(Controller.GetComponent<HUD>().MenuItems_3>0)
+				{
+				//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
+				//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
+				//VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
+				//VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
+				VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_3-1) * Controller.GetComponent<HUD>().BTN_Height;
+				}
+			break;
+		case 4: if(Controller.GetComponent<HUD>().MenuItems_4>0)
+				{
+				//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
+				//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
+				//VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
+				//VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
+				//VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
+				}
+			break;
+		default:
+			break;
+		}
+				
+		
+		VerticalOffset_0 += 0*Controller.GetComponent<HUD>().BTN_Height;
+		VerticalOffset_1 += 1*Controller.GetComponent<HUD>().BTN_Height;
+		VerticalOffset_2 += 2*Controller.GetComponent<HUD>().BTN_Height;
+		VerticalOffset_3 += 3*Controller.GetComponent<HUD>().BTN_Height;
+		VerticalOffset_4 += 4*Controller.GetComponent<HUD>().BTN_Height;
+		
+				
+		//VerticalOffset_0+=DeckIndex*Controller.GetComponent<HUD>().BTN_Height;
+		
+		if(	Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
 			Controller.GetComponent<State>().CurrentWaypoint()!= null &&
 			Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
 		{
 		//Level 2
 		//Creates a button based off of the dimensions of the HUD class
 		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-			Controller.GetComponent<HUD>().BTN_Y+0*Controller.GetComponent<HUD>().BTN_Height,
+			Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_0,
 			Controller.GetComponent<HUD>().BTN_Width,
 			Controller.GetComponent<HUD>().BTN_Height),
 			"Level 2",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
@@ -110,7 +175,7 @@ public class HUD : MonoBehaviour
 		//Level 1
 		//Creates a button based off of the dimensions of the HUD class
 		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-			Controller.GetComponent<HUD>().BTN_Y+1*Controller.GetComponent<HUD>().BTN_Height,
+			Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_1,
 			Controller.GetComponent<HUD>().BTN_Width,
 			Controller.GetComponent<HUD>().BTN_Height),
 			"Level 1",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
@@ -121,7 +186,7 @@ public class HUD : MonoBehaviour
 		//Deck 1
 		//Creates a button based off of the dimensions of the HUD class
 		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-			Controller.GetComponent<HUD>().BTN_Y+2*Controller.GetComponent<HUD>().BTN_Height,
+			Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_2,
 			Controller.GetComponent<HUD>().BTN_Width,
 			Controller.GetComponent<HUD>().BTN_Height),
 			"Deck 1",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
@@ -132,7 +197,7 @@ public class HUD : MonoBehaviour
 		//Deck 2
 		//Creates a button based off of the dimensions of the HUD class
 		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-			Controller.GetComponent<HUD>().BTN_Y+3*Controller.GetComponent<HUD>().BTN_Height,
+			Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_3,
 			Controller.GetComponent<HUD>().BTN_Width,
 			Controller.GetComponent<HUD>().BTN_Height),
 			"Deck 2",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
@@ -143,12 +208,40 @@ public class HUD : MonoBehaviour
 		//Deck 3
 		//Creates a button based off of the dimensions of the HUD class
 		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-			Controller.GetComponent<HUD>().BTN_Y+4*Controller.GetComponent<HUD>().BTN_Height,
+			Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_4,
 			Controller.GetComponent<HUD>().BTN_Width,
 			Controller.GetComponent<HUD>().BTN_Height),
 			"Deck 3",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 			{
 				MenuShown = 4;	
+			}
+		
+		
+			if(Controller.GetComponent<State>().CurrentWaypoint() != null)
+			{
+				switch(Controller.GetComponent<State>().CurrentWaypoint().DeckIndex)
+				{
+				case 0: VerticalOffset_Highlight = VerticalOffset_0;
+					break;
+				case 1: VerticalOffset_Highlight = VerticalOffset_1;
+					break;
+				case 2: VerticalOffset_Highlight = VerticalOffset_2;
+					break;
+				case 3: VerticalOffset_Highlight = VerticalOffset_3;
+					break;
+				case 4: VerticalOffset_Highlight = VerticalOffset_4;
+					break;
+				}
+				
+				//Highlight
+				if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+					Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_Highlight,
+					Controller.GetComponent<HUD>().BTN_Width,
+					Controller.GetComponent<HUD>().BTN_Height),
+					"",Controller.GetComponent<HUD>().GUI_Style_Default_BTN_Highlight))
+					{
+		
+					}
 			}
 		}
 	}
@@ -187,15 +280,10 @@ public class HUD : MonoBehaviour
 	}
 	
 	public void LookAtTarget()
-	{				
-		Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().transform.LookAt(Controller.GetComponent<State>().CurrentWaypoint().LookTarget.transform);
-		
-		while(Controller.GetComponent<State>().CameraRotationCheck() != false)
-		{
-			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Stop();	
-		}
-		
-		Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Resume();
+	{			
+		Vector3 zero = new Vector3(0,0,0);
+		Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().speed = 0f;
+		Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().destination = Controller.GetComponent<State>().CurrentWaypoint().LookTarget.transform.position;
 	}
 	
 	void ObjectOfInterestScanner()

@@ -58,6 +58,8 @@ public class State : MonoBehaviour
 		
 		ActivityCheck();
 		
+		IsLooping_Handler();
+		
 		FirstRunSetupCounter += 1;
 		if(FirstRunSetup == true && FirstRunSetupCounter%100 == 0)
 		{
@@ -65,6 +67,18 @@ public class State : MonoBehaviour
 			Controller.GetComponent<State>().TargetWaypoint(Controller.GetComponent<Follow>().WaypointCollection()[0]);
 			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().destination = Controller.GetComponent<Follow>().WaypointCollection()[0].transform.position;	
 			FirstRunSetup = false;
+		}
+	}
+	
+	void IsLooping_Handler()
+	{
+		if(IsLooping == true)
+		{
+			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().speed = 3f;	
+		}
+		else
+		{
+			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().speed = 4f;	
 		}
 	}
 	

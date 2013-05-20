@@ -10,9 +10,9 @@ public class ObjectOfInterest_BoilerPlate : Window
 		if(Controller.GetComponent<State>().CurrentObjectOfInterest() != null)
 		{
 			//If Current waypoint exists, the Text will become the Name of the Object.
-			Text = Controller.GetComponent<State>().CurrentObjectOfInterest().GetComponent<ObjectOfInterest>().Name
-				+":\n"
-				+ Controller.GetComponent<State>().CurrentObjectOfInterest().GetComponent<ObjectOfInterest>().Information;
+			Text = Controller.GetComponent<State>().CurrentObjectOfInterest().GetComponent<ObjectOfInterest>().Name;
+				//+":\n"
+				//+ Controller.GetComponent<State>().CurrentObjectOfInterest().GetComponent<ObjectOfInterest>().Information;
 		}
 	}
 	

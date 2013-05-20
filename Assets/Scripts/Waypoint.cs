@@ -49,11 +49,34 @@ public class Waypoint : MonoBehaviour
 		//Pushes the Paths
 		PushPaths();
 		
+		UpdateMenuItems();
+		
 		//Turns the waypoint invisible
 		GetComponent<MeshRenderer>().enabled = false;
 		
 		//Sets the dialog
 		audio.clip = Dialog;
+	}
+	
+	void UpdateMenuItems()
+	{
+		//Checks to see if the waypoint should have a button created on the menu
+		if (HasButton==true)
+		{
+			switch(DeckIndex)
+			{
+			case 0: Controller.GetComponent<HUD>().MenuItems_0 += 1;
+				break;
+			case 1: Controller.GetComponent<HUD>().MenuItems_1 += 1;
+				break;
+			case 2: Controller.GetComponent<HUD>().MenuItems_2 += 1;
+				break;
+			case 3: Controller.GetComponent<HUD>().MenuItems_3 += 1;
+				break;
+			case 4: Controller.GetComponent<HUD>().MenuItems_4 += 1;
+				break;
+			}
+		}
 	}
 	
 	void PushPaths()
@@ -156,7 +179,7 @@ public class Waypoint : MonoBehaviour
 		}
 		
 		Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = false;
-		
+				
 		//Plays the dialog audio clip associated with this waypoint zone
 		PlayDialog();
 	}
@@ -168,11 +191,15 @@ public class Waypoint : MonoBehaviour
 		
 		_WithinZone = true;
 		
+
+		
 		if(Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint())
 		{
-			CheckLoop();	
+			CheckLoop();
 		}
 	}
+		
+	
 	
 	//Handles everything that happens when the player leaves the waypoint zone
 	void OnTriggerExit(Collider other)
@@ -181,9 +208,6 @@ public class Waypoint : MonoBehaviour
 		{
 			_WithinZone = false;
 		}
-		
-		//Sets the current waypoint to null
-		Controller.GetComponent<State>().CurrentWaypoint(null);
 		
 		//Player is Active
 		Controller.GetComponent<State>().Active();
@@ -233,24 +257,30 @@ public class Waypoint : MonoBehaviour
 	#region "GUI"
 	void OnGUI ()
 	{
-		if(Controller.GetComponent<State>().MovementCheck() == false &&
-			Controller.GetComponent<State>().CurrentWaypoint()!= null &&
-			Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
+		//Checks to see if the waypoint should have a button created on the menu
+		if (HasButton==true)
 		{
-			//Checks to see if the waypoint should have a button created on the menu
-			if (HasButton==true)
+		
+			int VerticalOffset = 0;
+		
+			VerticalOffset+=DeckIndex*Controller.GetComponent<HUD>().BTN_Height;
+			VerticalOffset+=MenuIndex*Controller.GetComponent<HUD>().BTN_Height;
+				
+			if(	Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
+				Controller.GetComponent<State>().CurrentWaypoint()!= null &&
+				Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
 			{
 				//Handles the deck level menu
 				if(Controller.GetComponent<HUD>().MenuShown == DeckIndex)
 				{
 					//Creates a button based off of the dimensions of the HUD class
 					if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X+Controller.GetComponent<HUD>().BTN_Width,
-						Controller.GetComponent<HUD>().BTN_Y+DeckIndex*Controller.GetComponent<HUD>().BTN_Height+MenuIndex*Controller.GetComponent<HUD>().BTN_Height,
+						Controller.GetComponent<HUD>().BTN_Y+VerticalOffset,
 						Controller.GetComponent<HUD>().BTN_Width,
 						Controller.GetComponent<HUD>().BTN_Height),
 						Name,Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 						{
-							Controller.GetComponent<HUD>().MenuShown = 0;
+							Controller.GetComponent<HUD>().MenuShown = -1;
 							Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = true;
 							//Loop = true;
 							//On Click will set the destination of the player to this waypoint
