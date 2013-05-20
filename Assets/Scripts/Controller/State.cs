@@ -90,7 +90,7 @@ public class State : MonoBehaviour
 		}
 	}
 	
-	private bool CursorMovementCheck()
+	public bool CursorMovementCheck()
 	{
 		_CurrentCursorPos = Input.mousePosition;
 		
@@ -107,7 +107,7 @@ public class State : MonoBehaviour
 		}
 	}
 	
-	private bool CameraRotationCheck()
+	public bool CameraRotationCheck()
 	{
 		_CurrentRotation = Controller.GetComponent<Objects>().Player.GetComponent<Camera>().transform.rotation;
 		

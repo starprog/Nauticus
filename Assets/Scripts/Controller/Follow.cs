@@ -64,7 +64,7 @@ public class Follow : MonoBehaviour
 			}
 
 			
-			if(Controller.GetComponent<State>().TargetWaypoint().PrimaryWaypoint == false)
+			if(Controller.GetComponent<State>().TargetWaypoint().Loop == true && Controller.GetComponent<State>().TargetWaypoint().PrimaryWaypoint == false)
 			{
 				Controller.GetComponent<State>().IsLooping = true;
 			}

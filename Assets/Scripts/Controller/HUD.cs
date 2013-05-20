@@ -55,9 +55,12 @@ public class HUD : MonoBehaviour
 	
 	private void SkipToDestination_Handler()
 	{
-		if(Controller.GetComponent<State>().PrimaryTargetWaypoint() != null)
+		if(Controller.GetComponent<State>().PrimaryTargetWaypoint() != null &&
+			Controller.GetComponent<State>().CurrentWaypoint() != null)
 		{
-			if(Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN == true && Controller.GetComponent<State>().PrimaryTargetWaypoint().WithinZone() == false)
+			if(Controller.GetComponent<State>().IsLooping == false &&
+				Controller.GetComponent<State>().PrimaryTargetWaypoint().WithinZone() == false &&
+				Controller.GetComponent<State>().CurrentWaypoint().EndPoint==false)
 			{
 					Controller.GetComponent<SkipToDestination_BTN>().enabled = true;	
 			}
@@ -71,21 +74,28 @@ public class HUD : MonoBehaviour
 	
 	private void Look_BTN_Handler()
 	{
-		if(Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
-			Controller.GetComponent<State>().MovementCheck() == false)
+		if(Controller.GetComponent<State>().CurrentWaypoint() !=null && Controller.GetComponent<State>().TargetWaypoint())
 		{
-			Controller.GetComponent<LookLeft_BTN>().enabled = true;
-			Controller.GetComponent<LookRight_BTN>().enabled = true;
-		}
-		else
-		{
-			Controller.GetComponent<LookLeft_BTN>().enabled = false;
-			Controller.GetComponent<LookRight_BTN>().enabled = false;	
+			if(Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
+				Controller.GetComponent<State>().MovementCheck() == false && Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
+			{
+				Controller.GetComponent<LookLeft_BTN>().enabled = true;
+				Controller.GetComponent<LookRight_BTN>().enabled = true;
+			}
+			else
+			{
+				Controller.GetComponent<LookLeft_BTN>().enabled = false;
+				Controller.GetComponent<LookRight_BTN>().enabled = false;	
+			}
 		}
 	}
 	
 	private void OnGUI()
 	{
+		if(Controller.GetComponent<State>().MovementCheck() == false &&
+			Controller.GetComponent<State>().CurrentWaypoint()!= null &&
+			Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
+		{
 		//Level 2
 		//Creates a button based off of the dimensions of the HUD class
 		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
@@ -140,6 +150,7 @@ public class HUD : MonoBehaviour
 			{
 				MenuShown = 4;	
 			}
+		}
 	}
 	
 	#region "ObjectOfInterest"
@@ -173,6 +184,18 @@ public class HUD : MonoBehaviour
 			Controller.GetComponent<Location_BoilerPlate>().enabled = true;
 			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Resume();
 		}
+	}
+	
+	public void LookAtTarget()
+	{				
+		Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().transform.LookAt(Controller.GetComponent<State>().CurrentWaypoint().LookTarget.transform);
+		
+		while(Controller.GetComponent<State>().CameraRotationCheck() != false)
+		{
+			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Stop();	
+		}
+		
+		Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Resume();
 	}
 	
 	void ObjectOfInterestScanner()

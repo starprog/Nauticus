@@ -16,6 +16,7 @@ public class Waypoint : MonoBehaviour
 	public bool Loop = true;
 	public bool EndPoint = false;
 	public Waypoint LoopTarget = null;
+	public GameObject LookTarget = null;
 	public AudioClip Dialog;//set this = to the dialog to play when the player enters the waypoint trigger zone
 	public string LocationInformation;
 	private bool _WithinZone = false;
@@ -148,10 +149,10 @@ public class Waypoint : MonoBehaviour
 	//Handles everything that happens when the player enters the waypoint zone
 	void OnTriggerEnter(Collider other)
 	{
-		if(Controller.GetComponent<Follow>().HasAutomaticPathfinding == true)
+		if(LookTarget != null)
 		{
-			//Allows the player to look around when the player reaches a waypoint
-			//Controller.GetComponent<Objects>().Player.GetComponent<MouseLook>().enabled = true;
+			Controller.GetComponent<State>().CurrentWaypoint(this);
+			Controller.GetComponent<HUD>().LookAtTarget();	
 		}
 		
 		Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = false;
@@ -232,7 +233,9 @@ public class Waypoint : MonoBehaviour
 	#region "GUI"
 	void OnGUI ()
 	{
-		if(Controller.GetComponent<Follow>().HasAutomaticPathfinding == true)
+		if(Controller.GetComponent<State>().MovementCheck() == false &&
+			Controller.GetComponent<State>().CurrentWaypoint()!= null &&
+			Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
 		{
 			//Checks to see if the waypoint should have a button created on the menu
 			if (HasButton==true)
