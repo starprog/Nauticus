@@ -171,7 +171,7 @@ public class Waypoint : MonoBehaviour
 	#region "Triggers"
 	//Handles everything that happens when the player enters the waypoint zone
 	void OnTriggerEnter(Collider other)
-	{
+	{		
 		if(LookTarget != null)
 		{
 			Controller.GetComponent<State>().CurrentWaypoint(this);
@@ -197,6 +197,8 @@ public class Waypoint : MonoBehaviour
 		{
 			CheckLoop();
 		}
+		
+
 	}
 		
 	
