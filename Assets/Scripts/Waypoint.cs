@@ -267,7 +267,12 @@ public class Waypoint : MonoBehaviour
 		
 			VerticalOffset+=DeckIndex*Controller.GetComponent<HUD>().BTN_Height;
 			VerticalOffset+=MenuIndex*Controller.GetComponent<HUD>().BTN_Height;
-				
+			
+			for(int i = DeckIndex;i>0;i--)
+			{
+				VerticalOffset += Controller.GetComponent<HUD>().BTN_Height/4;	
+			}
+			
 			if(	Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
 				Controller.GetComponent<State>().CurrentWaypoint()!= null &&
 				Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)

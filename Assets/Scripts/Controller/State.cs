@@ -61,7 +61,7 @@ public class State : MonoBehaviour
 		IsLooping_Handler();
 		
 		FirstRunSetupCounter += 1;
-		if(FirstRunSetup == true && FirstRunSetupCounter%100 == 0)
+		if(FirstRunSetup == true && FirstRunSetupCounter%50 == 0)
 		{
 			Controller.GetComponent<State>().PrimaryTargetWaypoint(Controller.GetComponent<Follow>().WaypointCollection()[0]);
 			Controller.GetComponent<State>().TargetWaypoint(Controller.GetComponent<Follow>().WaypointCollection()[0]);

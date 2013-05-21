@@ -96,6 +96,36 @@ public class HUD : MonoBehaviour
 		int VerticalOffset_4 = 0;
 		int VerticalOffset_Highlight = 0;
 		
+				//level 2
+		for(int i = 0;i>0;i--)
+		{
+			VerticalOffset_0 += Controller.GetComponent<HUD>().BTN_Height/4;	
+		}
+		
+				//level 1
+		for(int i = 1;i>0;i--)
+		{
+			VerticalOffset_1 += Controller.GetComponent<HUD>().BTN_Height/4;	
+		}
+		
+				//deck 1
+		for(int i = 2;i>0;i--)
+		{
+			VerticalOffset_2 += Controller.GetComponent<HUD>().BTN_Height/4;	
+		}
+		
+				//deck 2
+		for(int i = 3;i>0;i--)
+		{
+			VerticalOffset_3 += Controller.GetComponent<HUD>().BTN_Height/4;	
+		}
+		
+				//deck 3
+		for(int i = 4;i>0;i--)
+		{
+			VerticalOffset_4 += Controller.GetComponent<HUD>().BTN_Height/4;	
+		}
+		
 		switch(Controller.GetComponent<HUD>().MenuShown)
 		{
 		case 0: if(Controller.GetComponent<HUD>().MenuItems_0>0)
