@@ -5,6 +5,8 @@ Project("{1DA2D6E9-ADE3-15D9-BAF3-2062A8510496}") = "Nauticus", "Assembly-CSharp
 EndProject
 Project("{1DA2D6E9-ADE3-15D9-BAF3-2062A8510496}") = "Nauticus", "Assembly-CSharp-vs.csproj", "{AEEABB8C-DB22-FB0B-A4B1-96C511AE7067}"
 EndProject
+Project("{1DA2D6E9-ADE3-15D9-BAF3-2062A8510496}") = "Nauticus", "Assembly-CSharp-Editor-vs.csproj", "{B9B0975D-E4B0-DB03-84B6-A25EA7BB723D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +21,15 @@ Global
 		{AEEABB8C-DB22-FB0B-A4B1-96C511AE7067}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEEABB8C-DB22-FB0B-A4B1-96C511AE7067}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEEABB8C-DB22-FB0B-A4B1-96C511AE7067}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9B0975D-E4B0-DB03-84B6-A25EA7BB723D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9B0975D-E4B0-DB03-84B6-A25EA7BB723D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9B0975D-E4B0-DB03-84B6-A25EA7BB723D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9B0975D-E4B0-DB03-84B6-A25EA7BB723D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																												GlobalSection(MonoDevelopProperties) = preSolution
+																																															GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
