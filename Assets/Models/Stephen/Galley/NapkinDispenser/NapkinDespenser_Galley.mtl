@@ -1,0 +1,48 @@
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd G:UV_Objects/5-24-13/Galley/KitchenHood/KitchenHood.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd G:UV_Objects/5-24-13/Galley/Ladel/Ladel.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd G:UV_Objects/5-24-13/Galley/Mixer/Mixer.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd G:UV_Objects/5-24-13/Galley/NapkinDispenser/NapkinDespenser.jpg
+
