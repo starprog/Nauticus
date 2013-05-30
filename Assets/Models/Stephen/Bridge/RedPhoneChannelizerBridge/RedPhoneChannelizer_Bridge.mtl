@@ -1,0 +1,132 @@
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd H:UV_Objects/5-26-13 New/Dental/DentalChair/DentalChair.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd H:UV_Objects/5-26-13 New/Dental/DentalSink/DentalSink.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd H:UV_Objects/5-26-13 New/Dental/DentalStation/DentalStation.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd H:UV_Objects/5-26-13 New/Bridge/AirPressureBoard/AirPressureBoard.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd H:UV_Objects/5-26-13 New/Bridge/BridgeCompass/BridgeCompass.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd H:UV_Objects/5-26-13 New/Bridge/BridgeGauges/BridgeGauges.jpg
+
+newmtl Default
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 1 1 1
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd H:UV_Objects/5-26-13 New/Bridge/CaptainsChair/CaptainsChair.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd H:UV_Objects/5-26-13 New/Bridge/CaptainsChair/CaptainsChair.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd H:UV_Objects/5-26-13 New/Bridge/ICAlarmPanelBridge/ICAlarmPanelBridge.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd H:UV_Objects/5-26-13 New/Bridge/MapTable/MapTable.jpg
+
+newmtl Default
+Kd 0.2 0.2 0.2
+Ke 0 0 0
+Ka 0.8 0.8 0.8
+Ks 1 1 1
+Ns 0
+Tr 0
+d 1
+Ni 0
+Tf 1 1 1
+map_Kd H:UV_Objects/5-26-13 New/Bridge/RedPhoneChannelizerBridge/RedPhoneChannelizer.jpg
+

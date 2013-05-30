@@ -1,0 +1,23 @@
+newmtl Default
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 1 1 1
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd FBX Models/Textured and UV/Laundry Room/Washer/Washer.jpg
+
+newmtl WasherDrum
+Kd 0.913725 0.913725 0.913725
+Ke 0.2 0.2 0.2
+Ka 0.8 0.8 0.8
+Ks 0.3 0.3 0.3
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
