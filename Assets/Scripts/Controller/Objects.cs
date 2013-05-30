@@ -6,6 +6,6 @@ public class Objects : MonoBehaviour
 {
 	#region "Variables"
 	public GameObject Player;
-	public List<GameObject> ObjectOfInterestCollection = new List<GameObject>();
+	public List<RoomOfInterest_Page> RoomOfInterestCollection = new List<RoomOfInterest_Page>();
 	#endregion
 }

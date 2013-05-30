@@ -27,6 +27,8 @@ public class HUD : MonoBehaviour
 	public int MenuItems_4 = 0;
 	
 	private bool _ObjectOfInterestWindow_Toggle = false;
+	
+	public bool RoomOfInterestWindow_Toggle = false;
 	#endregion
 	
 	#region "Methods"
@@ -43,7 +45,9 @@ public class HUD : MonoBehaviour
 		
 		SkipToDestination_Handler();
 		
-		ObjectOfInterest_Handler();
+		RoomOfInterestHandler();
+		
+		//ObjectOfInterest_Handler();
 		
 		CurrentDeck_Handler();
 	}
@@ -199,6 +203,7 @@ public class HUD : MonoBehaviour
 			Controller.GetComponent<HUD>().BTN_Height),
 			"Level 2",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 			{
+				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
 				MenuShown = 0;	
 			}
 		
@@ -210,6 +215,7 @@ public class HUD : MonoBehaviour
 			Controller.GetComponent<HUD>().BTN_Height),
 			"Level 1",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 			{
+				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
 				MenuShown = 1;	
 			}
 		
@@ -221,6 +227,7 @@ public class HUD : MonoBehaviour
 			Controller.GetComponent<HUD>().BTN_Height),
 			"Deck 1",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 			{
+				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
 				MenuShown = 2;	
 			}
 		
@@ -232,6 +239,7 @@ public class HUD : MonoBehaviour
 			Controller.GetComponent<HUD>().BTN_Height),
 			"Deck 2",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 			{
+				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
 				MenuShown = 3;	
 			}
 		
@@ -243,6 +251,7 @@ public class HUD : MonoBehaviour
 			Controller.GetComponent<HUD>().BTN_Height),
 			"Deck 3",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 			{
+				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
 				MenuShown = 4;	
 			}
 		
@@ -276,8 +285,24 @@ public class HUD : MonoBehaviour
 		}
 	}
 	
+	void RoomOfInterestHandler()
+	{
+		if(Controller.GetComponent<State>().CurrentWaypoint() !=null)
+		{
+			if(Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
+				Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
+			{
+				Controller.GetComponent<ObjectOfInterest_BoilerPlate>().enabled = true;
+			}
+			else
+			{
+				Controller.GetComponent<ObjectOfInterest_BoilerPlate>().enabled = false;	
+			}
+		}
+	}
+	
 	#region "ObjectOfInterest"
-	private void ObjectOfInterest_Handler()
+	/*private void ObjectOfInterest_Handler()
 	{
 		ObjectOfInterestScanner();
 		
@@ -335,7 +360,7 @@ public class HUD : MonoBehaviour
 				Controller.GetComponent<State>().CurrentObjectOfInterest(null);
 			}
 		}
-	}
+	}*/
 	#endregion
 	
 	#region "Getter and Setter"

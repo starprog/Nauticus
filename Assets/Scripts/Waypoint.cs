@@ -21,6 +21,11 @@ public class Waypoint : MonoBehaviour
 	public string LocationInformation;
 	private bool _WithinZone = false;
 	
+	public bool HasDescriptiveItems = false;
+	
+	public bool JumpToScene = false;
+	public int JumpToScene_Index = 0;
+	
 	private List<Waypoint> _Paths = new List<Waypoint>();
 	public Waypoint Path0;
 	public Waypoint Path1;
@@ -171,12 +176,9 @@ public class Waypoint : MonoBehaviour
 	#region "Triggers"
 	//Handles everything that happens when the player enters the waypoint zone
 	void OnTriggerEnter(Collider other)
-	{		
-		if(LookTarget != null)
-		{
-			Controller.GetComponent<State>().CurrentWaypoint(this);
-			Controller.GetComponent<HUD>().LookAtTarget();	
-		}
+	{	
+		Controller.GetComponent<State>().CurrentWaypoint(this);
+		RoomOfInterest_Handler();
 		
 		Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = false;
 				
@@ -201,7 +203,18 @@ public class Waypoint : MonoBehaviour
 
 	}
 		
-	
+	void RoomOfInterest_Handler()
+	{
+		int count = Controller.GetComponent<Objects>().RoomOfInterestCollection.Count;
+		for (int i=0;i<	count;i++)
+		{
+			if(Controller.GetComponent<Objects>().RoomOfInterestCollection[i].PrimaryWaypointIndex == Controller.GetComponent<State>().CurrentWaypoint().Index &&
+			Controller.GetComponent<Objects>().RoomOfInterestCollection[i].HomePage == true)
+			{
+				Controller.GetComponent<State>().CurrentRoomOfInterest_Page = Controller.GetComponent<Objects>().RoomOfInterestCollection[i];
+			}
+		}
+	}
 	
 	//Handles everything that happens when the player leaves the waypoint zone
 	void OnTriggerExit(Collider other)
@@ -287,14 +300,20 @@ public class Waypoint : MonoBehaviour
 						Controller.GetComponent<HUD>().BTN_Height),
 						Name,Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 						{
-							Controller.GetComponent<HUD>().MenuShown = -1;
-							Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = true;
-							//Loop = true;
-							//On Click will set the destination of the player to this waypoint
-							Debug.Log("Waypoint: Setting Destination to Waypoint: " + Name);
-							Controller.GetComponent<State>().PrimaryTargetWaypoint(this);	
-							Controller.GetComponent<Follow>().PathWaypointNavigate();
-							
+							if(JumpToScene == true)
+							{
+								Application.LoadLevel(JumpToScene_Index);		
+							}
+							else
+							{
+								Controller.GetComponent<HUD>().MenuShown = -1;
+								Controller.GetComponent<SkipToDestination_BTN>().ShowSkipBTN = true;
+								//Loop = true;
+								//On Click will set the destination of the player to this waypoint
+								Debug.Log("Waypoint: Setting Destination to Waypoint: " + Name);
+								Controller.GetComponent<State>().PrimaryTargetWaypoint(this);	
+								Controller.GetComponent<Follow>().PathWaypointNavigate();
+							}	
 						}
 				}
 			}

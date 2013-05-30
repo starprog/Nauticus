@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Location_BoilerPlate : Window
 {
+	public bool Location_BolierPlate_Toggle = true;
+	
 	// Update is called once per frame
 	void Update ()
 	{
@@ -17,8 +19,11 @@ public class Location_BoilerPlate : Window
 	}
 	
 	void OnGUI()
-	{
-		UpdateStats();		
-		GUI.Box(WindowBox,Text,Controller.GetComponent<HUD>().GUI_Style);
+	{		
+		UpdateStats();
+		if(Location_BolierPlate_Toggle == true)
+		{
+			GUI.Box(WindowBox,Text,Controller.GetComponent<HUD>().GUI_Style);
+		}
 	}
 }

@@ -20,18 +20,17 @@ public class State : MonoBehaviour
 	private Quaternion _CurrentRotation;
 	
 	
-	private Waypoint _CurrentWaypoint;
-	private Waypoint _TargetWaypoint;
-	private Waypoint _PrimaryTargetWaypoint;
+	public Waypoint _CurrentWaypoint;
+	public Waypoint _TargetWaypoint;
+	public Waypoint _PrimaryTargetWaypoint;
 	private GameObject _CurrentObjectOfInterest;
+	
+	public RoomOfInterest_Page CurrentRoomOfInterest_Page;
 	
 	private string _CurrentState;
 	private const string ACTIVE = "ACTIVE";
 	private const string INACTIVE = "INACTIVE";
 	private const string TIMEDOUT = "TIMEDOUT";
-	
-	bool FirstRunSetup = true;
-	int FirstRunSetupCounter = 0;
 	#endregion
 	
 	#region "Methods"
@@ -39,6 +38,8 @@ public class State : MonoBehaviour
 	#region "Initialize"
 	private void Start()
 	{
+		//Screen.showCursor = false; 
+		
 		Controller = GameObject.Find("Controller");
 		
 		if(HasTimeOut==true)
@@ -59,15 +60,6 @@ public class State : MonoBehaviour
 		ActivityCheck();
 		
 		IsLooping_Handler();
-		
-		FirstRunSetupCounter += 1;
-		if(FirstRunSetup == true && FirstRunSetupCounter%50 == 0)
-		{
-			Controller.GetComponent<State>().PrimaryTargetWaypoint(Controller.GetComponent<Follow>().WaypointCollection()[0]);
-			Controller.GetComponent<State>().TargetWaypoint(Controller.GetComponent<Follow>().WaypointCollection()[0]);
-			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().destination = Controller.GetComponent<Follow>().WaypointCollection()[0].transform.position;	
-			FirstRunSetup = false;
-		}
 	}
 	
 	void IsLooping_Handler()

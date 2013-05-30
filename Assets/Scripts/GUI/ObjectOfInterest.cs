@@ -19,7 +19,7 @@ public class ObjectOfInterest : MonoBehaviour
 	
 	private void PushObject()
 	{
-		Controller.GetComponent<Objects>().ObjectOfInterestCollection.Add(ReferenceObject);
+		//Controller.GetComponent<Objects>().ObjectOfInterestCollection.Add(ReferenceObject);
 	}
 	
 	// Update is called once per frame
