@@ -4,7 +4,7 @@ using System.Collections;
 public class Location_BoilerPlate : Window
 {
 	public bool Location_BolierPlate_Toggle = true;
-	
+	public GUIStyle LocationStyle = new GUIStyle();
 	// Update is called once per frame
 	void Update ()
 	{
@@ -23,7 +23,7 @@ public class Location_BoilerPlate : Window
 		UpdateStats();
 		if(Location_BolierPlate_Toggle == true)
 		{
-			GUI.Box(WindowBox,Text,Controller.GetComponent<HUD>().GUI_Style);
+			GUI.Box(WindowBox,Text,LocationStyle);
 		}
 	}
 }
