@@ -23,7 +23,14 @@ public class Location_BoilerPlate : Window
 		UpdateStats();
 		if(Location_BolierPlate_Toggle == true)
 		{
-			GUI.Box(WindowBox,Text,LocationStyle);
+			if(Controller.GetComponent<State>().CurrentWaypoint() != null)
+			{
+				if(Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
+				Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
+				{
+				GUI.Box(WindowBox,Text,LocationStyle);
+				}
+			}
 		}
 	}
 }

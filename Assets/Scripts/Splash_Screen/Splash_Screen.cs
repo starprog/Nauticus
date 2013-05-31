@@ -6,7 +6,7 @@ public class Splash_Screen : MonoBehaviour
 	public int BTN_Width = 100;
 	public int BTN_Height = 100;
 	public string BTN_Text = "Click to Start";
-	
+	public GUIStyle SplashStyle = new GUIStyle();
 	private int _BTN_X;
 	private int _BTN_Y;
 	
@@ -26,11 +26,7 @@ public class Splash_Screen : MonoBehaviour
 	void OnGUI()
 	{
 		//Creates a button based off of the dimensions of the HUD class
-		if (GUI.Button (new Rect (_BTN_X,
-			_BTN_Y,
-			BTN_Width,
-			BTN_Height),
-			BTN_Text))
+		if (GUI.Button (new Rect (0,0,Screen.width,Screen.height),BTN_Text,SplashStyle))
 			{
 				Application.LoadLevel(1);
 			}

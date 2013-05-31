@@ -19,6 +19,8 @@ public class HUD : MonoBehaviour
 	public GUIStyle GUI_Style_LeftArrow = new GUIStyle();
 	public GUIStyle GUI_Style_RightArrow = new GUIStyle();
 	public GUIStyle GUI_Style_ObjectOfInterestWindow = new GUIStyle();
+	public bool IsZoomToScene = false;
+	public int ZoomIndex;
 	public int MenuShown;
 	public int MenuItems_0 = 0;
 	public int MenuItems_1 = 0;
@@ -91,196 +93,215 @@ public class HUD : MonoBehaviour
 		}
 	}
 	
+	private void ZoomBackToBTN()
+	{		
+		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+						Controller.GetComponent<HUD>().BTN_Y,
+						Controller.GetComponent<HUD>().BTN_Width,
+						Controller.GetComponent<HUD>().BTN_Height),
+						"Back",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+		{
+			Application.LoadLevel(ZoomIndex);	
+		}
+	}
+	
 	private void OnGUI()
 	{
-		int VerticalOffset_0 = 0;
-		int VerticalOffset_1 = 0;
-		int VerticalOffset_2 = 0;
-		int VerticalOffset_3 = 0;
-		int VerticalOffset_4 = 0;
-		int VerticalOffset_Highlight = 0;
-		
-				//level 2
-		for(int i = 0;i>0;i--)
+		if(IsZoomToScene == true)
 		{
-			VerticalOffset_0 += Controller.GetComponent<HUD>().BTN_Height/4;	
+			ZoomBackToBTN();
 		}
-		
-				//level 1
-		for(int i = 1;i>0;i--)
+		else
 		{
-			VerticalOffset_1 += Controller.GetComponent<HUD>().BTN_Height/4;	
-		}
-		
-				//deck 1
-		for(int i = 2;i>0;i--)
-		{
-			VerticalOffset_2 += Controller.GetComponent<HUD>().BTN_Height/4;	
-		}
-		
-				//deck 2
-		for(int i = 3;i>0;i--)
-		{
-			VerticalOffset_3 += Controller.GetComponent<HUD>().BTN_Height/4;	
-		}
-		
-				//deck 3
-		for(int i = 4;i>0;i--)
-		{
-			VerticalOffset_4 += Controller.GetComponent<HUD>().BTN_Height/4;	
-		}
-		
-		switch(Controller.GetComponent<HUD>().MenuShown)
-		{
-		case 0: if(Controller.GetComponent<HUD>().MenuItems_0>0)
-				{
-				//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
-				VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
-				VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
-				VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
-				VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
-				}
-			break;							
-		case 1: if(Controller.GetComponent<HUD>().MenuItems_1>0)
-				{
-				//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_1) * Controller.GetComponent<HUD>().BTN_Height;
-				//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_1) * Controller.GetComponent<HUD>().BTN_Height;
-				VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_1-1) * Controller.GetComponent<HUD>().BTN_Height;
-				VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_1-1) * Controller.GetComponent<HUD>().BTN_Height;
-				VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_1-1) * Controller.GetComponent<HUD>().BTN_Height;
-				}
-			break;
-		case 2: if(Controller.GetComponent<HUD>().MenuItems_2>0)
-				{
-				//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_2) * Controller.GetComponent<HUD>().BTN_Height;
-				//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_2) * Controller.GetComponent<HUD>().BTN_Height;
-				//VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_2) * Controller.GetComponent<HUD>().BTN_Height;
-				VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_2-1) * Controller.GetComponent<HUD>().BTN_Height;
-				VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_2-1) * Controller.GetComponent<HUD>().BTN_Height;
-				}
-			break;
-		case 3: if(Controller.GetComponent<HUD>().MenuItems_3>0)
-				{
-				//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
-				//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
-				//VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
-				//VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
-				VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_3-1) * Controller.GetComponent<HUD>().BTN_Height;
-				}
-			break;
-		case 4: if(Controller.GetComponent<HUD>().MenuItems_4>0)
-				{
-				//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
-				//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
-				//VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
-				//VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
-				//VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
-				}
-			break;
-		default:
-			break;
-		}
-				
-		
-		VerticalOffset_0 += 0*Controller.GetComponent<HUD>().BTN_Height;
-		VerticalOffset_1 += 1*Controller.GetComponent<HUD>().BTN_Height;
-		VerticalOffset_2 += 2*Controller.GetComponent<HUD>().BTN_Height;
-		VerticalOffset_3 += 3*Controller.GetComponent<HUD>().BTN_Height;
-		VerticalOffset_4 += 4*Controller.GetComponent<HUD>().BTN_Height;
-		
-				
-		//VerticalOffset_0+=DeckIndex*Controller.GetComponent<HUD>().BTN_Height;
-		
-		if(	Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
-			Controller.GetComponent<State>().CurrentWaypoint()!= null &&
-			Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
-		{
-		//Level 2
-		//Creates a button based off of the dimensions of the HUD class
-		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-			Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_0,
-			Controller.GetComponent<HUD>().BTN_Width,
-			Controller.GetComponent<HUD>().BTN_Height),
-			"Level 2",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			int VerticalOffset_0 = 0;
+			int VerticalOffset_1 = 0;
+			int VerticalOffset_2 = 0;
+			int VerticalOffset_3 = 0;
+			int VerticalOffset_4 = 0;
+			int VerticalOffset_Highlight = 0;
+			
+					//level 2
+			for(int i = 0;i>0;i--)
 			{
-				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
-				MenuShown = 0;	
+				VerticalOffset_0 += Controller.GetComponent<HUD>().BTN_Height/4;	
 			}
-		
-		//Level 1
-		//Creates a button based off of the dimensions of the HUD class
-		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-			Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_1,
-			Controller.GetComponent<HUD>().BTN_Width,
-			Controller.GetComponent<HUD>().BTN_Height),
-			"Level 1",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			
+					//level 1
+			for(int i = 1;i>0;i--)
 			{
-				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
-				MenuShown = 1;	
+				VerticalOffset_1 += Controller.GetComponent<HUD>().BTN_Height/4;	
 			}
-		
-		//Deck 1
-		//Creates a button based off of the dimensions of the HUD class
-		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-			Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_2,
-			Controller.GetComponent<HUD>().BTN_Width,
-			Controller.GetComponent<HUD>().BTN_Height),
-			"Deck 1",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			
+					//deck 1
+			for(int i = 2;i>0;i--)
 			{
-				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
-				MenuShown = 2;	
+				VerticalOffset_2 += Controller.GetComponent<HUD>().BTN_Height/4;	
 			}
-		
-		//Deck 2
-		//Creates a button based off of the dimensions of the HUD class
-		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-			Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_3,
-			Controller.GetComponent<HUD>().BTN_Width,
-			Controller.GetComponent<HUD>().BTN_Height),
-			"Deck 2",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			
+					//deck 2
+			for(int i = 3;i>0;i--)
 			{
-				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
-				MenuShown = 3;	
+				VerticalOffset_3 += Controller.GetComponent<HUD>().BTN_Height/4;	
 			}
-		
-		//Deck 3
-		//Creates a button based off of the dimensions of the HUD class
-		if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-			Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_4,
-			Controller.GetComponent<HUD>().BTN_Width,
-			Controller.GetComponent<HUD>().BTN_Height),
-			"Deck 3",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			
+					//deck 3
+			for(int i = 4;i>0;i--)
 			{
-				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
-				MenuShown = 4;	
+				VerticalOffset_4 += Controller.GetComponent<HUD>().BTN_Height/4;	
 			}
-		
-		
-			if(Controller.GetComponent<State>().CurrentWaypoint() != null)
+			
+			switch(Controller.GetComponent<HUD>().MenuShown)
 			{
-				switch(Controller.GetComponent<State>().CurrentWaypoint().DeckIndex)
-				{
-				case 0: VerticalOffset_Highlight = VerticalOffset_0;
-					break;
-				case 1: VerticalOffset_Highlight = VerticalOffset_1;
-					break;
-				case 2: VerticalOffset_Highlight = VerticalOffset_2;
-					break;
-				case 3: VerticalOffset_Highlight = VerticalOffset_3;
-					break;
-				case 4: VerticalOffset_Highlight = VerticalOffset_4;
-					break;
-				}
-				
-				//Highlight
-				if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
-					Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_Highlight,
-					Controller.GetComponent<HUD>().BTN_Width,
-					Controller.GetComponent<HUD>().BTN_Height),
-					"",Controller.GetComponent<HUD>().GUI_Style_Default_BTN_Highlight))
+			case 0: if(Controller.GetComponent<HUD>().MenuItems_0>0)
 					{
-		
+					//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
+					VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
+					VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
+					VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
+					VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_0-1) * Controller.GetComponent<HUD>().BTN_Height;
 					}
+				break;							
+			case 1: if(Controller.GetComponent<HUD>().MenuItems_1>0)
+					{
+					//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_1) * Controller.GetComponent<HUD>().BTN_Height;
+					//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_1) * Controller.GetComponent<HUD>().BTN_Height;
+					VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_1-1) * Controller.GetComponent<HUD>().BTN_Height;
+					VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_1-1) * Controller.GetComponent<HUD>().BTN_Height;
+					VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_1-1) * Controller.GetComponent<HUD>().BTN_Height;
+					}
+				break;
+			case 2: if(Controller.GetComponent<HUD>().MenuItems_2>0)
+					{
+					//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_2) * Controller.GetComponent<HUD>().BTN_Height;
+					//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_2) * Controller.GetComponent<HUD>().BTN_Height;
+					//VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_2) * Controller.GetComponent<HUD>().BTN_Height;
+					VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_2-1) * Controller.GetComponent<HUD>().BTN_Height;
+					VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_2-1) * Controller.GetComponent<HUD>().BTN_Height;
+					}
+				break;
+			case 3: if(Controller.GetComponent<HUD>().MenuItems_3>0)
+					{
+					//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
+					//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
+					//VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
+					//VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_3) * Controller.GetComponent<HUD>().BTN_Height;
+					VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_3-1) * Controller.GetComponent<HUD>().BTN_Height;
+					}
+				break;
+			case 4: if(Controller.GetComponent<HUD>().MenuItems_4>0)
+					{
+					//VerticalOffset_0 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
+					//VerticalOffset_1 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
+					//VerticalOffset_2 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
+					//VerticalOffset_3 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
+					//VerticalOffset_4 += (Controller.GetComponent<HUD>().MenuItems_4) * Controller.GetComponent<HUD>().BTN_Height;
+					}
+				break;
+			default:
+				break;
+			}
+					
+			
+			VerticalOffset_0 += 0*Controller.GetComponent<HUD>().BTN_Height;
+			VerticalOffset_1 += 1*Controller.GetComponent<HUD>().BTN_Height;
+			VerticalOffset_2 += 2*Controller.GetComponent<HUD>().BTN_Height;
+			VerticalOffset_3 += 3*Controller.GetComponent<HUD>().BTN_Height;
+			VerticalOffset_4 += 4*Controller.GetComponent<HUD>().BTN_Height;
+			
+					
+			//VerticalOffset_0+=DeckIndex*Controller.GetComponent<HUD>().BTN_Height;
+			
+			if(	Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
+				Controller.GetComponent<State>().CurrentWaypoint()!= null &&
+				Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
+			{
+			//Level 2
+			//Creates a button based off of the dimensions of the HUD class
+			if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+				Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_0,
+				Controller.GetComponent<HUD>().BTN_Width,
+				Controller.GetComponent<HUD>().BTN_Height),
+				"Level 2",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+				{
+					Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
+					MenuShown = 0;	
+				}
+			
+			//Level 1
+			//Creates a button based off of the dimensions of the HUD class
+			if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+				Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_1,
+				Controller.GetComponent<HUD>().BTN_Width,
+				Controller.GetComponent<HUD>().BTN_Height),
+				"Level 1",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+				{
+					Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
+					MenuShown = 1;	
+				}
+			
+			//Deck 1
+			//Creates a button based off of the dimensions of the HUD class
+			if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+				Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_2,
+				Controller.GetComponent<HUD>().BTN_Width,
+				Controller.GetComponent<HUD>().BTN_Height),
+				"Deck 1",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+				{
+					Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
+					MenuShown = 2;	
+				}
+			
+			//Deck 2
+			//Creates a button based off of the dimensions of the HUD class
+			if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+				Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_3,
+				Controller.GetComponent<HUD>().BTN_Width,
+				Controller.GetComponent<HUD>().BTN_Height),
+				"Deck 2",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+				{
+					Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
+					MenuShown = 3;	
+				}
+			
+			//Deck 3
+			//Creates a button based off of the dimensions of the HUD class
+			if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+				Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_4,
+				Controller.GetComponent<HUD>().BTN_Width,
+				Controller.GetComponent<HUD>().BTN_Height),
+				"Deck 3",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+				{
+					Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
+					MenuShown = 4;	
+				}
+			
+			
+				if(Controller.GetComponent<State>().CurrentWaypoint() != null)
+				{
+					switch(Controller.GetComponent<State>().CurrentWaypoint().DeckIndex)
+					{
+					case 0: VerticalOffset_Highlight = VerticalOffset_0;
+						break;
+					case 1: VerticalOffset_Highlight = VerticalOffset_1;
+						break;
+					case 2: VerticalOffset_Highlight = VerticalOffset_2;
+						break;
+					case 3: VerticalOffset_Highlight = VerticalOffset_3;
+						break;
+					case 4: VerticalOffset_Highlight = VerticalOffset_4;
+						break;
+					}
+					
+					//Highlight
+					if (GUI.Button (new Rect (Controller.GetComponent<HUD>().BTN_X,
+						Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_Highlight,
+						Controller.GetComponent<HUD>().BTN_Width,
+						Controller.GetComponent<HUD>().BTN_Height),
+						"",Controller.GetComponent<HUD>().GUI_Style_Default_BTN_Highlight))
+						{
+			
+						}
+				}
 			}
 		}
 	}
