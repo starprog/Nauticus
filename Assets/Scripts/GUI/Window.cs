@@ -18,6 +18,13 @@ public class Window : MonoBehaviour
 	public float Window_X;
 	public float Window_Y;
 	
+	public float Padding_Left;
+	public float Padding_Right;
+	public float Padding_Top;
+	public float Padding_Bottom;
+	
+	public int Depth;
+	
 	protected Rect WindowBox = new Rect(0,0,0,0);
 	
 	void Start()
@@ -60,10 +67,12 @@ public class Window : MonoBehaviour
 		Window_Y=DockY(DockedY);
 		
 		//Sets the WindowBox settings
-		WindowBox.x = Window_X;
-		WindowBox.y = Window_Y;
+		WindowBox.x = Window_X + Padding_Left - Padding_Right;
+		WindowBox.y = Window_Y + Padding_Top - Padding_Bottom;
 		WindowBox.width = Window_Width;
 		WindowBox.height = Window_Height;
+		
+		GUI.depth = Depth;
 	}
 	
 	public void OnGUI()

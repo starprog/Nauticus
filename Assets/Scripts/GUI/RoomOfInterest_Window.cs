@@ -58,7 +58,7 @@ using System.Collections;
 			GUI.Box(WindowBox,"",WindowStyle);
 			
 			//Title
-			if(GUI.Button(new Rect(Title_X,Title_Y,Title_Width,Title_Height),Controller.GetComponent<State>().CurrentWaypoint().Name,TitleStyle))
+			/*if(GUI.Button(new Rect(Title_X,Title_Y,Title_Width,Title_Height),Controller.GetComponent<State>().CurrentWaypoint().Name,TitleStyle))
 			{
 				int counter = Controller.GetComponent<Objects>().RoomOfInterestCollection.Count;
 				for(int i=0;i<counter;i++)
@@ -69,42 +69,33 @@ using System.Collections;
 							Controller.GetComponent<State>().CurrentRoomOfInterest_Page = Controller.GetComponent<Objects>().RoomOfInterestCollection[i];
 					}
 				}
-			}
-			
-			//ExitBTN
-			if(GUI.Button(new Rect(ExitBTN_X,ExitBTN_Y,ExitBTN_Width,ExitBTN_Height),"X",ExitBTNStyle))
-			{
-				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;	
-			}
+			}*/
 			
 			//Image
 			GUI.Box(new Rect(Image_X,Image_Y,Image_Width,Image_Height),"",ImageStyle);
 			
+			//ExitBTN
+			if(GUI.Button(new Rect(ExitBTN_X,ExitBTN_Y,ExitBTN_Width,ExitBTN_Height),"",ExitBTNStyle))
+			{
+				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;	
+			}
+			
 			//Description
-			GUI.Box(new Rect(Desc_X,Desc_Y,Desc_Width,Desc_Height),Controller.GetComponent<State>().CurrentRoomOfInterest_Page.Description,DescStyle);
+			//GUI.Box(new Rect(Desc_X,Desc_Y,Desc_Width,Desc_Height),"",DescStyle);
 			
 			//Buttons
 			int count = Controller.GetComponent<Objects>().RoomOfInterestCollection.Count;
 			
 				for(int i=0;i<count;i++)
 				{
-					if(Controller.GetComponent<State>().PrimaryTargetWaypoint().Index == Controller.GetComponent<Objects>().RoomOfInterestCollection[i].PrimaryWaypointIndex)
+					if(Controller.GetComponent<State>().PrimaryTargetWaypoint().Index == Controller.GetComponent<Objects>().RoomOfInterestCollection[i].PrimaryWaypointIndex &&
+					Controller.GetComponent<Objects>().RoomOfInterestCollection[i].HasBTN == true &&
+					Controller.GetComponent<State>().CurrentRoomOfInterest_Page != Controller.GetComponent<Objects>().RoomOfInterestCollection[i])
 					{
-						if(Controller.GetComponent<State>().CurrentRoomOfInterest_Page == Controller.GetComponent<Objects>().RoomOfInterestCollection[i])
+						if(GUI.Button(new Rect(BTN_X + (Controller.GetComponent<Objects>().RoomOfInterestCollection[i].PageIndex * (BTN_Width + SmallMargin)),BTN_Y,BTN_Width,BTN_Height),"",BTNStyle))
 						{
-							if(GUI.Button(new Rect(BTN_X + (Controller.GetComponent<Objects>().RoomOfInterestCollection[i].PageIndex * (BTN_Width + SmallMargin)),BTN_Y,BTN_Width,BTN_Height),Controller.GetComponent<Objects>().RoomOfInterestCollection[i].Title,BTNStyle_Highlighted))
-							{
-								Controller.GetComponent<State>().CurrentRoomOfInterest_Page = Controller.GetComponent<Objects>().RoomOfInterestCollection[i];
-							}	
+							Controller.GetComponent<State>().CurrentRoomOfInterest_Page = Controller.GetComponent<Objects>().RoomOfInterestCollection[i];
 						}
-						else
-						{
-							if(GUI.Button(new Rect(BTN_X + (Controller.GetComponent<Objects>().RoomOfInterestCollection[i].PageIndex * (BTN_Width + SmallMargin)),BTN_Y,BTN_Width,BTN_Height),Controller.GetComponent<Objects>().RoomOfInterestCollection[i].Title,BTNStyle))
-							{
-								Controller.GetComponent<State>().CurrentRoomOfInterest_Page = Controller.GetComponent<Objects>().RoomOfInterestCollection[i];
-							}
-						}
-						
 					}
 				}
 			
@@ -123,15 +114,15 @@ using System.Collections;
 		Title_X = WindowBox.x +Title_Width/2;
 		Title_Y = WindowBox.y + Margin;
 		
-		ExitBTN_Width = Margin;
-		ExitBTN_Height = Margin;
-		ExitBTN_X = WindowBox.x + WindowBox.width - ExitBTN_Width;
-		ExitBTN_Y = WindowBox.y;
+		ExitBTN_Width = WindowBox.width*0.055f;
+		ExitBTN_Height = ExitBTN_Width;
+		ExitBTN_X = WindowBox.x + WindowBox.width - ExitBTN_Width-SmallMargin;
+		ExitBTN_Y = WindowBox.y+SmallMargin;
 		
-		Image_Width = WindowBox.width*0.5f;
-		Image_Height = WindowBox.height*0.5f;
-		Image_X = WindowBox.x +Image_Width/2;
-		Image_Y = Title_Y + Title_Height + SmallMargin;
+		Image_Width = WindowBox.width;
+		Image_Height = WindowBox.height;
+		Image_X = WindowBox.x;
+		Image_Y = WindowBox.y;
 		
 		Desc_Width = WindowBox.width - (Margin * 2);
 		Desc_Height = WindowBox.height*0.3f-(Margin * 2);
@@ -140,7 +131,7 @@ using System.Collections;
 		
 		BTN_Width = WindowBox.width * 0.1f + Margin;
 		BTN_Height = BTN_Width/3;
-		BTN_X = WindowBox.x+Margin;
+		BTN_X = WindowBox.x+WindowBox.width-Margin-BTN_Width;
 		BTN_Y = WindowBox.y + WindowBox.height - Margin-BTN_Height;
 	}
 	

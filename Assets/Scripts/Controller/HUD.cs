@@ -43,7 +43,7 @@ public class HUD : MonoBehaviour
 	void Update()
 	{
 		//Updates the text
-		InactivityWarningMessage.text = ("Inactivity Timeout in " + Controller.GetComponent<State>().TimeOut + " Seconds");
+		//InactivityWarningMessage.text = ("Inactivity Timeout in " + Controller.GetComponent<State>().TimeOut + " Seconds");
 		
 		SkipToDestination_Handler();
 		
@@ -57,13 +57,13 @@ public class HUD : MonoBehaviour
 	public void ShowTimeOutWarning()
 	{
 		//Shows the Warning Message for InActivity
-		InactivityWarningMessage.GetComponent<GUIText>().enabled = true;
+		//InactivityWarningMessage.GetComponent<GUIText>().enabled = true;
 	}
 	
 	public void HideTimeOutWarning()
 	{
 		//Hides the Warning Message for InActivity
-		InactivityWarningMessage.GetComponent<GUIText>().enabled = false;
+		//InactivityWarningMessage.GetComponent<GUIText>().enabled = false;
 	}
 	
 	private void SkipToDestination_Handler()
@@ -213,7 +213,8 @@ public class HUD : MonoBehaviour
 			
 			if(	Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
 				Controller.GetComponent<State>().CurrentWaypoint()!= null &&
-				Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
+				Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true &&
+				GetComponent<HUD>().RoomOfInterestWindow_Toggle == false)
 			{
 			//Level 2
 			//Creates a button based off of the dimensions of the HUD class
@@ -221,7 +222,7 @@ public class HUD : MonoBehaviour
 				Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_0,
 				Controller.GetComponent<HUD>().BTN_Width,
 				Controller.GetComponent<HUD>().BTN_Height),
-				"Level 2",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+				"02 Level",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 				{
 					Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
 					MenuShown = 0;	
@@ -233,7 +234,7 @@ public class HUD : MonoBehaviour
 				Controller.GetComponent<HUD>().BTN_Y+VerticalOffset_1,
 				Controller.GetComponent<HUD>().BTN_Width,
 				Controller.GetComponent<HUD>().BTN_Height),
-				"Level 1",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+				"01 Level",Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 				{
 					Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
 					MenuShown = 1;	
@@ -314,10 +315,22 @@ public class HUD : MonoBehaviour
 				Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
 			{
 				Controller.GetComponent<ObjectOfInterest_BoilerPlate>().enabled = true;
+				
+				int count = Controller.GetComponent<Follow>().WaypointCollection().Count;
+				for(int i=0;i<count;i++)
+				{
+					Controller.GetComponent<Follow>().WaypointCollection()[i].GetComponent<SphereCollider>().enabled = false;	
+				}
 			}
 			else
 			{
 				Controller.GetComponent<ObjectOfInterest_BoilerPlate>().enabled = false;	
+				
+				int count = Controller.GetComponent<Follow>().WaypointCollection().Count;
+				for(int i=0;i<count;i++)
+				{
+					Controller.GetComponent<Follow>().WaypointCollection()[i].GetComponent<SphereCollider>().enabled = true;	
+				}
 			}
 		}
 	}

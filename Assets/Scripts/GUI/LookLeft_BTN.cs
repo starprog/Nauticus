@@ -23,12 +23,12 @@ int MaxDegrees = 45; //how many degrees it turns in total (rough amount)
 		if(Controller.GetComponent<State>().CurrentWaypoint() !=null)
 		{
 			if(Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
-				Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true)
+				Controller.GetComponent<State>().CurrentWaypoint().EndPoint == true&&
+				GetComponent<HUD>().RoomOfInterestWindow_Toggle == false)
 			{
 				if (GUI.RepeatButton (WindowBox, Text,Controller.GetComponent<HUD>().GUI_Style_LeftArrow))
 				{
 					Controller.GetComponent<HUD>().MenuShown = -1;
-					Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;
 					DegreesToTurn = MaxDegrees;
 					Controller.GetComponent<LookRight_BTN>().DegreesToTurn = 0;
 				}

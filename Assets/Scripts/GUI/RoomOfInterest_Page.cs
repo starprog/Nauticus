@@ -10,8 +10,9 @@ using System.Collections;
 	public int PageIndex;
 	public string Title;
 	public Texture2D Image;
-	public string Description;
+	//public string Description;
 	public float Margin = 50f;
+	public bool HasBTN = false;
 		
 	void Start()
 	{
