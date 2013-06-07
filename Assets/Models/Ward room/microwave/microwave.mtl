@@ -1,0 +1,48 @@
+newmtl Default_1
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 1 1 1
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd FBX Models/Textured and UV/Ward room/microwave/microwave.jpg
+
+newmtl Default_2
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 1 1 1
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd FBX Models/Textured and UV/Ward room/microwave/microwave.jpg
+
+newmtl Default_3
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 1 1 1
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd FBX Models/Textured and UV/Ward room/microwave/microwave.jpg
+
+newmtl Default_4
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 1 1 1
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd FBX Models/Textured and UV/Ward room/microwave/microwave.jpg
+
