@@ -17,7 +17,7 @@ public class SkipToDestination_BTN : Window
 			{
 				Debug.Log("Target = "+Controller.GetComponent<State>().PrimaryTargetWaypoint().Name);
 				Controller.GetComponent<State>().TargetWaypoint(Controller.GetComponent<State>().PrimaryTargetWaypoint());
-				Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Warp(Controller.GetComponent<State>().PrimaryTargetWaypoint().transform.position);
+//				Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Warp(Controller.GetComponent<State>().PrimaryTargetWaypoint().transform.position);
 			}
 		}
 	}
