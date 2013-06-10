@@ -52,24 +52,13 @@ using System.Collections;
 			if(Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle == true && Controller.GetComponent<State>().CurrentRoomOfInterest_Page != null)
 			{
 			
+			//stops navigation
+			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Stop();
+			
 			UpdateStyle();
 			
 			//Window
 			GUI.Box(WindowBox,"",WindowStyle);
-			
-			//Title
-			/*if(GUI.Button(new Rect(Title_X,Title_Y,Title_Width,Title_Height),Controller.GetComponent<State>().CurrentWaypoint().Name,TitleStyle))
-			{
-				int counter = Controller.GetComponent<Objects>().RoomOfInterestCollection.Count;
-				for(int i=0;i<counter;i++)
-				{
-					if(Controller.GetComponent<Objects>().RoomOfInterestCollection[i].PrimaryWaypointIndex == Controller.GetComponent<State>().CurrentRoomOfInterest_Page.PrimaryWaypointIndex&&
-						Controller.GetComponent<Objects>().RoomOfInterestCollection[i].HomePage == true)
-					{
-							Controller.GetComponent<State>().CurrentRoomOfInterest_Page = Controller.GetComponent<Objects>().RoomOfInterestCollection[i];
-					}
-				}
-			}*/
 			
 			//Image
 			GUI.Box(new Rect(Image_X,Image_Y,Image_Width,Image_Height),"",ImageStyle);
@@ -79,10 +68,7 @@ using System.Collections;
 			{
 				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle = false;	
 			}
-			
-			//Description
-			//GUI.Box(new Rect(Desc_X,Desc_Y,Desc_Width,Desc_Height),"",DescStyle);
-			
+						
 			//Buttons
 			int count = Controller.GetComponent<Objects>().RoomOfInterestCollection.Count;
 			
@@ -100,6 +86,12 @@ using System.Collections;
 				}
 			
 			}
+			else
+			{
+			//Resumes navigation
+				Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().Resume();	
+			}
+		
 		}
 	
 	void UpdateStyle()

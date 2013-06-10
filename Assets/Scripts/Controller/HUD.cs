@@ -73,7 +73,8 @@ public class HUD : MonoBehaviour
 		{
 			if(Controller.GetComponent<State>().IsLooping == false &&
 				Controller.GetComponent<State>().PrimaryTargetWaypoint().WithinZone() == false &&
-				Controller.GetComponent<State>().CurrentWaypoint().EndPoint==false)
+				Controller.GetComponent<State>().CurrentWaypoint().EndPoint==false &&
+				Controller.GetComponent<HUD>().RoomOfInterestWindow_Toggle == false)
 			{
 					Controller.GetComponent<SkipToDestination_BTN>().enabled = true;	
 			}

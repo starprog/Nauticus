@@ -36,6 +36,8 @@ public class Waypoint : MonoBehaviour
 	public Waypoint Path6;
 	public Waypoint Path7;
 	public Waypoint Path8;
+	public Waypoint Path9;
+	public Waypoint Path10;
 	#endregion
 	
 	#region "Methods"
@@ -95,6 +97,8 @@ public class Waypoint : MonoBehaviour
 		_Paths.Add(Path6);
 		_Paths.Add(Path7);
 		_Paths.Add(Path8);
+		_Paths.Add(Path9);
+		_Paths.Add(Path10);
 	}
 	
 	void PushWaypoint()
