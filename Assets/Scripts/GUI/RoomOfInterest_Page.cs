@@ -8,6 +8,7 @@ using System.Collections;
 	public bool HomePage = false;
 	public int PrimaryWaypointIndex;
 	public int PageIndex;
+    public int ItemIndex;
 	public string Title;
 	public Texture2D Image;
 	//public string Description;

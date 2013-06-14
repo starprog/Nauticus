@@ -215,6 +215,7 @@ public class Waypoint : MonoBehaviour
 			if(Controller.GetComponent<Objects>().RoomOfInterestCollection[i].PrimaryWaypointIndex == Controller.GetComponent<State>().CurrentWaypoint().Index &&
 			Controller.GetComponent<Objects>().RoomOfInterestCollection[i].HomePage == true)
 			{
+				Controller.GetComponent<ObjectOfInterest_BoilerPlate>().MyPage = Controller.GetComponent<Objects>().RoomOfInterestCollection[i];
 				Controller.GetComponent<State>().CurrentRoomOfInterest_Page = Controller.GetComponent<Objects>().RoomOfInterestCollection[i];
 			}
 		}

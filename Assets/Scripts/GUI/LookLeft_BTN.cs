@@ -9,17 +9,17 @@ int MaxDegrees = 45; //how many degrees it turns in total (rough amount)
 	//Left
 	void TurnSequence_Handler()
 	{	
-		if(DegreesToTurn > 0)
-		{
-			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().camera.transform.Rotate(0,-1,0);
-			DegreesToTurn -= 1;
-		}
+		//if(DegreesToTurn > 0)
+		//{
+//			Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().camera.transform.Rotate(0,-3,0);
+			//DegreesToTurn -= 1;
+		//}
 	}
 	
 	void OnGUI()
 	{
 		UpdateStats();
-		TurnSequence_Handler();
+		//TurnSequence_Handler();
 		if(Controller.GetComponent<State>().CurrentWaypoint() !=null)
 		{
 			if(Controller.GetComponent<State>().CurrentWaypoint() == Controller.GetComponent<State>().TargetWaypoint() &&
@@ -29,8 +29,9 @@ int MaxDegrees = 45; //how many degrees it turns in total (rough amount)
 				if (GUI.RepeatButton (WindowBox, Text,Controller.GetComponent<HUD>().GUI_Style_LeftArrow))
 				{
 					Controller.GetComponent<HUD>().MenuShown = -1;
-					DegreesToTurn = MaxDegrees;
-					Controller.GetComponent<LookRight_BTN>().DegreesToTurn = 0;
+                    Controller.GetComponent<Objects>().Player.GetComponent<NavMeshAgent>().camera.transform.Rotate(0, -3, 0);
+					//DegreesToTurn = MaxDegrees;
+					//Controller.GetComponent<LookRight_BTN>().DegreesToTurn = 0;
 				}
 			}
 		}

@@ -76,7 +76,8 @@ using System.Collections;
 				{
 					if(Controller.GetComponent<State>().PrimaryTargetWaypoint().Index == Controller.GetComponent<Objects>().RoomOfInterestCollection[i].PrimaryWaypointIndex &&
 					Controller.GetComponent<Objects>().RoomOfInterestCollection[i].HasBTN == true &&
-					Controller.GetComponent<State>().CurrentRoomOfInterest_Page != Controller.GetComponent<Objects>().RoomOfInterestCollection[i])
+					Controller.GetComponent<State>().CurrentRoomOfInterest_Page != Controller.GetComponent<Objects>().RoomOfInterestCollection[i]&&
+                    Controller.GetComponent<State>().CurrentRoomOfInterest_Page.ItemIndex <0)
 					{
 						if(GUI.Button(new Rect(BTN_X + (Controller.GetComponent<Objects>().RoomOfInterestCollection[i].PageIndex * (BTN_Width + SmallMargin)),BTN_Y,BTN_Width,BTN_Height),"",BTNStyle))
 						{

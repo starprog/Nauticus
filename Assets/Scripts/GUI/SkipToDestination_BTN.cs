@@ -13,7 +13,7 @@ public class SkipToDestination_BTN : Window
 		
 		if(Controller.GetComponent<State>().IsLooping == false)
 		{
-			if (GUI.Button (WindowBox, Text + " to the " + Controller.GetComponent<State>().PrimaryTargetWaypoint().Name,Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
+			if (GUI.Button (WindowBox, Text,Controller.GetComponent<HUD>().GUI_Style_Default_BTN))
 			{
 				Debug.Log("Target = "+Controller.GetComponent<State>().PrimaryTargetWaypoint().Name);
 				Controller.GetComponent<State>().TargetWaypoint(Controller.GetComponent<State>().PrimaryTargetWaypoint());
